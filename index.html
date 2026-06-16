@@ -174,11 +174,13 @@
   .panel .ph{font-size:11px;color:#8FAD9C;margin-bottom:14px;letter-spacing:.02em}
 
   .ranklist{display:flex;flex-direction:column;gap:7px}
-  .rankrow{display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:center;font-size:12.5px}
-  .rankrow .h{color:#A9C2B2}
-  .rankrow .bar-wrap{height:18px;background:rgba(0,0,0,.18);border-radius:5px;overflow:hidden;position:relative}
-  .rankrow .bar{height:100%;border-radius:5px}
-  .rankrow .val{font-family:'DM Mono',monospace;font-size:12px;min-width:42px;text-align:right}
+  .rankrow{display:grid;grid-template-columns:62px 1fr 44px;gap:10px;align-items:center;font-size:12.5px}
+  .rankrow .rk-h{color:#A9C2B2;line-height:1.12}
+  .rankrow .rk-h small{display:block;font-size:9px;color:#7f9a89;letter-spacing:.01em}
+  .rankrow .rk-track{position:relative;height:20px;background:rgba(0,0,0,.2);border-radius:5px;overflow:hidden}
+  .rankrow .rk-mid{position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(243,236,216,.22)}
+  .rankrow .rk-fill{position:absolute;top:2px;bottom:2px;border-radius:3px;min-width:2px}
+  .rankrow .rk-val{font-family:'DM Mono',monospace;font-size:12px;text-align:right}
 
   /* par-type */
   .ptype{display:flex;flex-direction:column;gap:14px;margin-top:2px}
@@ -246,6 +248,14 @@
   .sr-cell{flex:1;border-radius:8px;color:#fff;padding:6px 10px;display:flex;justify-content:space-between;align-items:baseline}
   .sr-cell .sr-lbl{font-size:10px;opacity:.92;letter-spacing:.04em}
   .sr-cell .sr-v{font-family:'Fraunces',serif;font-weight:600;font-size:16px}
+  .sr-cell .pips{font-size:9px;opacity:.9;margin-left:4px;letter-spacing:1.5px;vertical-align:1px}
+  .scout-hcp{font-size:10.5px;color:var(--ink-soft);letter-spacing:.02em;text-align:center;margin-bottom:11px}
+  .scout-hcp b{color:var(--ink)}
+  .scout-even{display:inline-block;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;background:var(--ink);color:var(--parch);border-radius:5px;padding:3px 8px;margin-bottom:9px;font-weight:600}
+  .scout-modeseg{display:inline-flex;background:rgba(27,38,32,.07);border-radius:999px;padding:3px;margin-bottom:13px;border:1px solid var(--parch-line)}
+  .scout-modeseg button{-webkit-appearance:none;appearance:none;border:0;background:transparent;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.05em;color:var(--ink-soft);padding:7px 20px;border-radius:999px;cursor:pointer;font-weight:500;min-height:38px;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+  .scout-modeseg button[aria-pressed="true"]{background:var(--ink);color:var(--parch)}
+  .scout-modeseg button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
   .sr-edge{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11.5px}
   .sr-edge .ed{font-weight:500;white-space:nowrap}
   .sr-edge .tip{color:var(--ink-soft);font-size:10.5px;text-align:right;line-height:1.3}
@@ -315,8 +325,8 @@
   <div class="grid2 normal-sec">
     <div class="panel">
       <h3 id="trblTitle">Where the shots leak (best ball)</h3>
-      <div class="ph">Holes ranked by average over par — worst first</div>
-      <div class="ranklist" id="troubleList"><div class="rankrow"><span class="h">#1</span><span class="bar-wrap"><span class="bar" style="width:100%;background:#D9714F"></span></span><span class="val" style="color:#D9714F">+1.3</span></div><div class="rankrow"><span class="h">#18</span><span class="bar-wrap"><span class="bar" style="width:100%;background:#D9714F"></span></span><span class="val" style="color:#D9714F">+1.3</span></div><div class="rankrow"><span class="h">#4</span><span class="bar-wrap"><span class="bar" style="width:80%;background:#D9714F"></span></span><span class="val" style="color:#D9714F">+1</span></div><div class="rankrow"><span class="h">#15</span><span class="bar-wrap"><span class="bar" style="width:80%;background:#D9714F"></span></span><span class="val" style="color:#D9714F">+1</span></div><div class="rankrow"><span class="h">#6</span><span class="bar-wrap"><span class="bar" style="width:60%;background:#D8A85A"></span></span><span class="val" style="color:#D8A85A">+0.8</span></div><div class="rankrow"><span class="h">#8</span><span class="bar-wrap"><span class="bar" style="width:60%;background:#D8A85A"></span></span><span class="val" style="color:#D8A85A">+0.8</span></div><div class="rankrow"><span class="h">#9</span><span class="bar-wrap"><span class="bar" style="width:60%;background:#D8A85A"></span></span><span class="val" style="color:#D8A85A">+0.8</span></div><div class="rankrow"><span class="h">#17</span><span class="bar-wrap"><span class="bar" style="width:60%;background:#D8A85A"></span></span><span class="val" style="color:#D8A85A">+0.8</span></div><div class="rankrow"><span class="h">#3</span><span class="bar-wrap"><span class="bar" style="width:40%;background:#D8A85A"></span></span><span class="val" style="color:#D8A85A">+0.5</span></div><div class="rankrow"><span class="h">#10</span><span class="bar-wrap"><span class="bar" style="width:40%;background:#D8A85A"></span></span><span class="val" style="color:#D8A85A">+0.5</span></div><div class="rankrow"><span class="h">#12</span><span class="bar-wrap"><span class="bar" style="width:40%;background:#D8A85A"></span></span><span class="val" style="color:#D8A85A">+0.5</span></div><div class="rankrow"><span class="h">#11</span><span class="bar-wrap"><span class="bar" style="width:20%;background:#5C9A4F"></span></span><span class="val" style="color:#5C9A4F">+0.3</span></div><div class="rankrow"><span class="h">#14</span><span class="bar-wrap"><span class="bar" style="width:20%;background:#5C9A4F"></span></span><span class="val" style="color:#5C9A4F">+0.3</span></div><div class="rankrow"><span class="h">#16</span><span class="bar-wrap"><span class="bar" style="width:20%;background:#5C9A4F"></span></span><span class="val" style="color:#5C9A4F">+0.3</span></div><div class="rankrow"><span class="h">#2</span><span class="bar-wrap"><span class="bar" style="width:0%;background:#5C9A4F"></span></span><span class="val" style="color:#5C9A4F">E</span></div><div class="rankrow"><span class="h">#5</span><span class="bar-wrap"><span class="bar" style="width:0%;background:#5C9A4F"></span></span><span class="val" style="color:#5C9A4F">E</span></div><div class="rankrow"><span class="h">#7</span><span class="bar-wrap"><span class="bar" style="width:20%;background:#3E7A3A"></span></span><span class="val" style="color:#3E7A3A">-0.2</span></div><div class="rankrow"><span class="h">#13</span><span class="bar-wrap"><span class="bar" style="width:20%;background:#3E7A3A"></span></span><span class="val" style="color:#3E7A3A">-0.2</span></div></div>
+      <div class="ph">Each bar diverges from par — leaks grow right, strengths left. Worst first.</div>
+      <div class="ranklist" id="troubleList"><div class="rankrow"><span class="rk-h">#1<small>par 4 &middot; SI 3</small></span><span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:50%;background:#D9714F"></span></span><span class="rk-val" style="color:#D9714F">+1.3</span></div><div class="rankrow"><span class="rk-h">#18<small>par 4 &middot; SI 2</small></span><span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:50%;background:#D9714F"></span></span><span class="rk-val" style="color:#D9714F">+1.3</span></div><div class="rankrow"><span class="rk-h">#4<small>par 4 &middot; SI 7</small></span><span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:40%;background:#D9714F"></span></span><span class="rk-val" style="color:#D9714F">+1</span></div><div class="rankrow"><span class="rk-h">#15<small>par 4 &middot; SI 8</small></span><span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:40%;background:#D9714F"></span></span><span class="rk-val" style="color:#D9714F">+1</span></div><div class="rankrow"><span class="rk-h">#6<small>par 4 &middot; SI 17</small></span><span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:30%;background:#D8A85A"></span></span><span class="rk-val" style="color:#D8A85A">+0.8</span></div><div class="rankrow"><span class="rk-h">#8<small>par 4 &middot; SI 5</small></span><span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:30%;background:#D8A85A"></span></span><span class="rk-val" style="color:#D8A85A">+0.8</span></div><div class="rankrow"><span class="rk-h">#9<small>par 5 &middot; SI 9</small></span><span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:30%;background:#D8A85A"></span></span><span class="rk-val" style="color:#D8A85A">+0.8</span></div><div class="rankrow"><span class="rk-h">#17<small>par 3 &middot; SI 12</small></span><span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:30%;background:#D8A85A"></span></span><span class="rk-val" style="color:#D8A85A">+0.8</span></div><div class="rankrow"><span class="rk-h">#3<small>par 3 &middot; SI 13</small></span><span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:20%;background:#D8A85A"></span></span><span class="rk-val" style="color:#D8A85A">+0.5</span></div><div class="rankrow"><span class="rk-h">#10<small>par 4 &middot; SI 10</small></span><span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:20%;background:#D8A85A"></span></span><span class="rk-val" style="color:#D8A85A">+0.5</span></div><div class="rankrow"><span class="rk-h">#12<small>par 4 &middot; SI 16</small></span><span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:20%;background:#D8A85A"></span></span><span class="rk-val" style="color:#D8A85A">+0.5</span></div><div class="rankrow"><span class="rk-h">#11<small>par 3 &middot; SI 14</small></span><span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:10%;background:#5C9A4F"></span></span><span class="rk-val" style="color:#5C9A4F">+0.3</span></div><div class="rankrow"><span class="rk-h">#14<small>par 4 &middot; SI 6</small></span><span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:10%;background:#5C9A4F"></span></span><span class="rk-val" style="color:#5C9A4F">+0.3</span></div><div class="rankrow"><span class="rk-h">#16<small>par 4 &middot; SI 18</small></span><span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:10%;background:#5C9A4F"></span></span><span class="rk-val" style="color:#5C9A4F">+0.3</span></div><div class="rankrow"><span class="rk-h">#2<small>par 4 &middot; SI 15</small></span><span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:0%;background:#5C9A4F"></span></span><span class="rk-val" style="color:#5C9A4F">E</span></div><div class="rankrow"><span class="rk-h">#5<small>par 3 &middot; SI 11</small></span><span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:0%;background:#5C9A4F"></span></span><span class="rk-val" style="color:#5C9A4F">E</span></div><div class="rankrow"><span class="rk-h">#7<small>par 5 &middot; SI 1</small></span><span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:40%;width:10%;background:#3E7A3A"></span></span><span class="rk-val" style="color:#3E7A3A">-0.2</span></div><div class="rankrow"><span class="rk-h">#13<small>par 5 &middot; SI 4</small></span><span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:40%;width:10%;background:#3E7A3A"></span></span><span class="rk-val" style="color:#3E7A3A">-0.2</span></div></div>
     </div>
     <div class="panel">
       <h3 id="ptTitle">Best ball by hole type</h3>
@@ -340,13 +350,19 @@
 
   <div id="scoutView" style="display:none">
     <div class="scout-summary">
-      <h2>Scouting · front nine vs Rhodus &amp; Parcell</h2>
-      <div class="ss-sub">Shotgun start — your group tees off on <b>Hole 6</b>. Playing order: 6 → 7 → 8 → 9 → 1 → 2 → 3 → 4 → 5. Cells show best-ball average vs par (lower is better). Based on 4 front-nine rounds; Apr 23 used a sub for Parcell.</div>
-      <div class="scout-tot">
-        <div class="st"><div class="l">You — best ball</div><div class="n" id="scoutTotYou">+4.75</div></div>
-        <div class="st"><div class="l">Them — best ball</div><div class="n" id="scoutTotThem">+3.75</div></div>
+      <div class="scout-modeseg" role="group" aria-label="Scoring mode">
+        <button data-mode="net" aria-pressed="true">Net</button>
+        <button data-mode="gross" aria-pressed="false">Gross</button>
       </div>
-      <div class="scout-keys"><b>Win hole 7</b> — your par-5 strength, their weakest hole, and the #1 stroke hole. <b>Steal 1 &amp; 6</b> with a warm-up; both teams start cold. <b>Halve the par 3s</b> (3, 5) and don't give back 4 &amp; 9.</div>
+      <h2 id="scoutTitle">Scouting · front nine, net vs Rhodus &amp; Parcell</h2>
+      <div class="ss-sub" id="scoutSub">Shotgun start — you tee off on <b>Hole 6</b> (order 6 → 7 → 8 → 9 → 1 → 2 → 3 → 4 → 5). Net best-ball using tournament playing handicaps off the low man. Strokes fall on holes <b>7, 1, 8, 4</b>; dots show how many of a side's players stroke there.</div>
+      <div class="scout-hcp" id="scoutHcp">Playing handicaps — Shawn <b>0</b> · Brian <b>2</b> · Jeff <b>4</b> · Andrew <b>4</b></div>
+      <div class="scout-tot">
+        <div class="st"><div class="l">You — best ball</div><div class="n" id="scoutTotYou">+1.5</div></div>
+        <div class="st"><div class="l">Them — best ball</div><div class="n" id="scoutTotThem">+1.5</div></div>
+      </div>
+      <span class="scout-even" id="scoutEven">Dead even on paper</span>
+      <div class="scout-keys" id="scoutKeys"><b>Hole 7 is the match</b> — you both stroke on your strongest hole for a net edge of +1.75. <b>Hole 1 flips your way</b> with two strokes, and you reach it warmed up (it's now your 5th hole) — attack it. Your real cold start is <b>hole 6</b> (no strokes, they edge it), so warm up first. Beware <b>hole 4</b> — Andrew strokes and scores it. With the par 3s likely halved, it tips on no-stroke <b>6 &amp; 9</b> — steal one.</div>
     </div>
     <div class="scout-list" id="scoutList"></div>
   </div>
@@ -439,7 +455,7 @@ function buildBand(){
 function hardestTeam(){ return [...HOLES].sort((a,b)=>b.teamVP-a.teamVP)[0]; }
 
 /* ---------------- SCORECARD ---------------- */
-let VIEW='team', SEL=null;
+let VIEW='team', SEL=null, SCOUT_MODE='net';
 
 function cell(h){
   const vp=vpOf(h,VIEW);
@@ -485,14 +501,15 @@ function buildDetail(){
 /* ---------------- TROUBLE LIST ---------------- */
 function buildTrouble(){
   const sorted=[...HOLES].sort((a,b)=>vpOf(b,VIEW)-vpOf(a,VIEW));
-  const max=Math.max(1, ...HOLES.map(h=>Math.abs(vpOf(h,VIEW))));
+  const RANGE=Math.max(0.75, ...HOLES.map(h=>Math.abs(vpOf(h,VIEW))));
   document.getElementById('troubleList').innerHTML = sorted.map(h=>{
-    const vp=vpOf(h,VIEW);
-    const w=Math.abs(vp)/max*100;
+    const vp=vpOf(h,VIEW), c=heat(vp);
+    const half=Math.min(Math.abs(vp)/RANGE,1)*50;
+    const left=vp>=0?50:50-half;
     return `<div class="rankrow">
-      <span class="h">#${h.h}</span>
-      <span class="bar-wrap"><span class="bar" style="width:${w}%;background:${heat(vp)}"></span></span>
-      <span class="val" style="color:${heat(vp)}">${fmtVP(vp)}</span>
+      <span class="rk-h">#${h.h}<small>par ${h.par} &middot; SI ${h.si}</small></span>
+      <span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:${left}%;width:${half}%;background:${c}"></span></span>
+      <span class="rk-val" style="color:${c}">${fmtVP(vp)}</span>
     </div>`;
   }).join('');
 }
@@ -605,7 +622,7 @@ function buildNote(){
   document.getElementById('ptTitle').textContent = `${label} by hole type`;
 }
 
-/* ---------------- SCOUTING ---------------- */
+/* ---------------- SCOUTING (net match play) ---------------- */
 const SHOTGUN=[6,7,8,9,1,2,3,4,5];
 // Rhodus & Parcell front-nine gross, chronological [Apr 23, May 7, May 21, Jun 4]
 // (Apr 23 partner was a sub, "Drew" Parcell)
@@ -620,29 +637,67 @@ const OPP={
   8:{shawn:[5,4,6,7], andrew:[5,5,5,6]},
   9:{shawn:[6,5,5,4], andrew:[6,8,5,4]},
 };
-Object.keys(OPP).forEach(k=>{const o=OPP[k];o.best=o.shawn.map((s,i)=>Math.min(s,o.andrew[i]));});
-const TIPS={
-  6:'They convert this — bank your par',
+// tournament playing handicaps (off the low man, Shawn)
+const PH={jeff:4, brian:2, shawn:0, andrew:4};
+// front-9 stroke allocation, hardest first (this card uses the odd indexes on the front)
+const STROKE_ORDER=[7,1,8,4,9,5,3,2,6];
+const strokes=(ph,h)=> STROKE_ORDER.indexOf(h) < ph ? 1 : 0;
+const TIPS_NET={
+  6:'Your opening tee — both play it cold now. No strokes; warm up and nick it',
+  7:'You both stroke on your best hole — biggest net edge. Press',
+  8:'Both sides stroke — plays even. Grind a par',
+  9:"No strokes, they're sharper — protect par",
+  1:'Now played 5th, so you\u2019re warm — and you both stroke. Attack it',
+  2:'No strokes, even — halve it',
+  3:'Par 3, no strokes, even — halve it',
+  4:"Andrew strokes and scores it — their best hole. Don't bleed",
+  5:'Par 3, no strokes, even — halve it',
+};
+const TIPS_GROSS={
+  6:'Your opener now — both start cold. Bank a par',
   7:'Your hole. Andrew melts down here — press hard',
   8:'Slight edge you — a steady par takes it',
   9:"They're sharper here — protect par",
-  1:'Shared cold start — both shaky, up for grabs',
+  1:'Played 5th, both warmed up — up for grabs',
   2:'Reliable par for both — expect a halve',
   3:'Par 3, dead even — halve it',
-  4:'They score this one — don\u2019t force it',
+  4:"They score this one — don't force it",
   5:'Par 3, both make par — halve it',
 };
-const oppAvg=h=>avg(OPP[h].best);
-const jbFrontAvg=h=>avg(HOLES.find(x=>x.h===h).best);
+const SCOUT_COPY={
+  net:{
+    title:'Scouting · front nine, net vs Rhodus &amp; Parcell',
+    sub:'Shotgun start — you tee off on <b>Hole 6</b> (order 6 → 7 → 8 → 9 → 1 → 2 → 3 → 4 → 5). Net best-ball using tournament playing handicaps off the low man. Strokes fall on holes <b>7, 1, 8, 4</b>; dots show how many of a side\u2019s players stroke there.',
+    keys:'<b>Hole 7 is the match</b> — you both stroke on your strongest hole for a net edge of +1.75. <b>Hole 1 flips your way</b> with two strokes, and you reach it warmed up (it\u2019s now your 5th hole) — attack it. Your real cold start is <b>hole 6</b> (no strokes, they edge it), so warm up first. Beware <b>hole 4</b> — Andrew strokes and scores it. With the par 3s likely halved, it tips on no-stroke <b>6 &amp; 9</b> — steal one.',
+    tips:TIPS_NET, hcp:true, even:'Dead even on paper'
+  },
+  gross:{
+    title:'Scouting · front nine, gross vs Rhodus &amp; Parcell',
+    sub:'Shotgun start — you tee off on <b>Hole 6</b> (order 6 → 7 → 8 → 9 → 1 → 2 → 3 → 4 → 5). Raw best-ball average vs par — no handicap strokes applied.',
+    keys:'<b>Win hole 7</b> — your par-5 strength and their weakest hole. Your cold start is now <b>hole 6</b>; you reach <b>hole 1</b> warmed up (5th). They out-score you on the mid par 4s (<b>4, 6</b>) and <b>9</b>, so halve the par 3s and don\u2019t give those back. Gross, they sit about a shot better per nine.',
+    tips:TIPS_GROSS, hcp:false, even:''
+  }
+};
+function holeBest(h,mode){
+  const hole=HOLES.find(x=>x.h===h), net=mode==='net';
+  const sj=net?strokes(PH.jeff,h):0,  sb=net?strokes(PH.brian,h):0;
+  const ss=net?strokes(PH.shawn,h):0, sa=net?strokes(PH.andrew,h):0;
+  const you =[0,1,2,3].map(i=>Math.min(hole.jeff[i]-sj, hole.brian[i]-sb));
+  const them=[0,1,2,3].map(i=>Math.min(OPP[h].shawn[i]-ss, OPP[h].andrew[i]-sa));
+  return {you:r1(avg(you)), them:r1(avg(them))};
+}
 const fmtMargin=m=>{m=Math.round(m*100)/100;return Math.round(m)===m?m.toFixed(0):String(m);};
+const pips=n=> n? '<span class="pips">'+'&bull;'.repeat(n)+'</span>' : '';
 
 function buildScout(){
-  let tjb=0,top=0;
+  const mode=SCOUT_MODE, copy=SCOUT_COPY[mode], net=mode==='net';
+  let ty=0, tt=0;
   const rows=SHOTGUN.map(h=>{
     const hole=HOLES.find(x=>x.h===h);
-    const jb=Math.round(jbFrontAvg(h)*100)/100, op=Math.round(oppAvg(h)*100)/100;
-    tjb+=jb; top+=op;
-    const diff=Math.round((jb-op)*100)/100;
+    const nb=holeBest(h,mode); ty+=nb.you; tt+=nb.them;
+    const youStrk=net?(strokes(PH.jeff,h)+strokes(PH.brian,h)):0;
+    const themStrk=net?(strokes(PH.andrew,h)+strokes(PH.shawn,h)):0;
+    const diff=r1(nb.you-nb.them);
     let edge,color;
     if(Math.abs(diff)<0.13){edge='&#61; EVEN';color='var(--ink-soft)';}
     else if(diff<0){edge='&#9650; YOU +'+fmtMargin(-diff);color='var(--fair-deep)';}
@@ -651,16 +706,23 @@ function buildScout(){
       <div class="sr-hole"><span class="sr-num">${h}</span><span class="sr-meta">par ${hole.par} &middot; SI ${hole.si}</span>${h===6?'<span class="sr-start">TEE OFF</span>':''}</div>
       <div class="sr-right">
         <div class="sr-cells">
-          <div class="sr-cell" style="background:${heat(jb-hole.par)}"><span class="sr-lbl">You</span><span class="sr-v">${jb.toFixed(1)}</span></div>
-          <div class="sr-cell" style="background:${heat(op-hole.par)}"><span class="sr-lbl">Them</span><span class="sr-v">${op.toFixed(1)}</span></div>
+          <div class="sr-cell" style="background:${heat(nb.you-hole.par)}"><span class="sr-lbl">You${pips(youStrk)}</span><span class="sr-v">${nb.you.toFixed(1)}</span></div>
+          <div class="sr-cell" style="background:${heat(nb.them-hole.par)}"><span class="sr-lbl">Them${pips(themStrk)}</span><span class="sr-v">${nb.them.toFixed(1)}</span></div>
         </div>
-        <div class="sr-edge"><span class="ed" style="color:${color}">${edge}</span><span class="tip">${TIPS[h]||''}</span></div>
+        <div class="sr-edge"><span class="ed" style="color:${color}">${edge}</span><span class="tip">${copy.tips[h]||''}</span></div>
       </div>
     </div>`;
   }).join('');
   document.getElementById('scoutList').innerHTML=rows;
-  document.getElementById('scoutTotYou').textContent=fmtVP(Math.round((tjb-36)*100)/100);
-  document.getElementById('scoutTotThem').textContent=fmtVP(Math.round((top-36)*100)/100);
+  document.getElementById('scoutTotYou').textContent=fmtVP(r1(ty-36));
+  document.getElementById('scoutTotThem').textContent=fmtVP(r1(tt-36));
+  document.getElementById('scoutTitle').innerHTML=copy.title;
+  document.getElementById('scoutSub').innerHTML=copy.sub;
+  document.getElementById('scoutHcp').style.display=copy.hcp?'':'none';
+  const ev=document.getElementById('scoutEven');
+  ev.style.display=copy.even?'inline-block':'none'; ev.textContent=copy.even||'';
+  document.getElementById('scoutKeys').innerHTML=copy.keys;
+  document.querySelectorAll('.scout-modeseg button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.mode===mode));
 }
 
 /* ---------------- WIRING ---------------- */
@@ -670,7 +732,7 @@ function renderAll(){
   document.getElementById('scoutView').style.display = scout ? '' : 'none';
   if(scout){
     buildScout();
-    document.getElementById('ctxNote').innerHTML='Head-to-head best-ball heat, in shotgun order from <b>Hole 6</b>.';
+    document.getElementById('ctxNote').innerHTML='Net best-ball head-to-head, in shotgun order from <b>Hole 6</b>.';
     return;
   }
   buildCard(); buildTrouble(); buildPtype(); buildNote(); buildDetail();
@@ -681,6 +743,10 @@ document.querySelectorAll('.seg button').forEach(b=>{
     document.querySelectorAll('.seg button').forEach(x=>x.setAttribute('aria-pressed', x===b));
     renderAll();
   });
+});
+
+document.querySelectorAll('.scout-modeseg button').forEach(b=>{
+  b.addEventListener('click',()=>{ SCOUT_MODE=b.dataset.mode; buildScout(); });
 });
 
 buildBand();
