@@ -221,6 +221,39 @@
     *{transition:none!important;animation:none!important}
     html{scroll-behavior:auto}
   }
+  /* ---------- Scouting ---------- */
+  #scoutView{margin-bottom:20px}
+  .scout-summary{background:var(--parch);color:var(--ink);border-radius:16px;box-shadow:var(--shadow);padding:16px 18px;margin-bottom:14px}
+  .scout-summary h2{font-family:'Fraunces',serif;font-weight:600;font-size:18px;letter-spacing:-.01em;margin-bottom:5px}
+  .scout-summary .ss-sub{font-size:11.5px;color:var(--ink-soft);letter-spacing:.01em;line-height:1.55;margin-bottom:13px}
+  .scout-summary .ss-sub b{color:var(--ink)}
+  .scout-tot{display:flex;gap:10px;margin-bottom:12px}
+  .scout-tot .st{flex:1;border:1px solid var(--parch-line);border-radius:10px;padding:9px 12px;text-align:center}
+  .scout-tot .st .l{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+  .scout-tot .st .n{font-family:'Fraunces',serif;font-weight:600;font-size:23px;margin-top:2px}
+  .scout-keys{font-size:12px;color:var(--ink);line-height:1.65;border-top:1px solid var(--parch-line);padding-top:11px}
+  .scout-keys b{color:var(--fair-deep)}
+
+  .scout-list{display:flex;flex-direction:column;gap:8px}
+  .scout-row{background:var(--parch);color:var(--ink);border-radius:12px;box-shadow:var(--shadow);padding:11px 13px;display:grid;grid-template-columns:92px 1fr;gap:12px;align-items:center}
+  .scout-row.start{box-shadow:0 0 0 2px var(--gold), var(--shadow)}
+  .sr-hole{display:flex;flex-direction:column;gap:1px}
+  .sr-num{font-family:'Fraunces',serif;font-weight:900;font-size:23px;line-height:.95}
+  .sr-meta{font-size:10px;color:var(--ink-soft);letter-spacing:.02em}
+  .sr-start{display:inline-block;margin-top:4px;font-size:8px;letter-spacing:.14em;background:var(--gold);color:#3a2c08;border-radius:4px;padding:2px 6px;font-weight:600;width:max-content}
+  .sr-right{display:flex;flex-direction:column;gap:7px;min-width:0}
+  .sr-cells{display:flex;gap:8px}
+  .sr-cell{flex:1;border-radius:8px;color:#fff;padding:6px 10px;display:flex;justify-content:space-between;align-items:baseline}
+  .sr-cell .sr-lbl{font-size:10px;opacity:.92;letter-spacing:.04em}
+  .sr-cell .sr-v{font-family:'Fraunces',serif;font-weight:600;font-size:16px}
+  .sr-edge{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11.5px}
+  .sr-edge .ed{font-weight:500;white-space:nowrap}
+  .sr-edge .tip{color:var(--ink-soft);font-size:10.5px;text-align:right;line-height:1.3}
+  @media (max-width:420px){
+    .scout-row{grid-template-columns:70px 1fr;gap:10px;padding:10px 11px}
+    .sr-edge{flex-direction:column;align-items:flex-start;gap:2px}
+    .sr-edge .tip{text-align:left}
+  }
 </style>
 </head>
 <body>
@@ -240,15 +273,16 @@
 
   <div class="controls">
     <div class="seg" role="group" aria-label="Choose view">
-      <button data-view="team" aria-pressed="true">Team · Best Ball</button>
+      <button data-view="team" aria-pressed="true">Team</button>
       <button data-view="jeff" aria-pressed="false">Jeff</button>
       <button data-view="brian" aria-pressed="false">Brian</button>
+      <button data-view="scout" aria-pressed="false">Scouting</button>
     </div>
     <div class="ctx-note" id="ctxNote">Best ball only hurts when <b>neither</b> makes par. Trouble clusters on the long par 4s — #1, #18, #4. Strength: hole #7 (-0.25).</div>
   </div>
 
   <!-- Scorecard -->
-  <div class="card">
+  <div class="card normal-sec">
     <div class="card-h">
       <h2 id="scTitle">Best ball · hole by hole</h2>
       <div class="meta">avg score vs par · tap a hole</div>
@@ -273,12 +307,12 @@
   </div>
 
   <!-- Detail drawer -->
-  <div class="detail" id="detail">
+  <div class="detail normal-sec" id="detail">
     <div class="placeholder">Tap any hole above to see all four rounds, both players.</div>
   </div>
 
   <!-- Trouble / strength + par type -->
-  <div class="grid2">
+  <div class="grid2 normal-sec">
     <div class="panel">
       <h3 id="trblTitle">Where the shots leak (best ball)</h3>
       <div class="ph">Holes ranked by average over par — worst first</div>
@@ -292,7 +326,7 @@
   </div>
 
   <!-- Trend -->
-  <div class="panel" style="margin-bottom:20px">
+  <div class="panel normal-sec" style="margin-bottom:20px">
     <h3>Week-by-week form</h3>
     <div class="ph">Team best-ball score vs par each week — and how the recent stretch turned</div>
     <div class="swipe-hint" style="color:#8FAD9C;padding:0 0 4px 4px">← swipe chart →</div>
@@ -302,6 +336,19 @@
       <span class="li"><i class="ln" style="background:var(--fair)"></i> Jeff gross</span>
       <span class="li"><i class="ln" style="background:var(--flag-soft)"></i> Brian gross</span>
     </div>
+  </div>
+
+  <div id="scoutView" style="display:none">
+    <div class="scout-summary">
+      <h2>Scouting · front nine vs Rhodus &amp; Parcell</h2>
+      <div class="ss-sub">Shotgun start — your group tees off on <b>Hole 6</b>. Playing order: 6 → 7 → 8 → 9 → 1 → 2 → 3 → 4 → 5. Cells show best-ball average vs par (lower is better). Based on 4 front-nine rounds; Apr 23 used a sub for Parcell.</div>
+      <div class="scout-tot">
+        <div class="st"><div class="l">You — best ball</div><div class="n" id="scoutTotYou">+4.75</div></div>
+        <div class="st"><div class="l">Them — best ball</div><div class="n" id="scoutTotThem">+3.75</div></div>
+      </div>
+      <div class="scout-keys"><b>Win hole 7</b> — your par-5 strength, their weakest hole, and the #1 stroke hole. <b>Steal 1 &amp; 6</b> with a warm-up; both teams start cold. <b>Halve the par 3s</b> (3, 5) and don't give back 4 &amp; 9.</div>
+    </div>
+    <div class="scout-list" id="scoutList"></div>
   </div>
 
   <div class="footer">
@@ -558,8 +605,76 @@ function buildNote(){
   document.getElementById('ptTitle').textContent = `${label} by hole type`;
 }
 
+/* ---------------- SCOUTING ---------------- */
+const SHOTGUN=[6,7,8,9,1,2,3,4,5];
+// Rhodus & Parcell front-nine gross, chronological [Apr 23, May 7, May 21, Jun 4]
+// (Apr 23 partner was a sub, "Drew" Parcell)
+const OPP={
+  1:{shawn:[4,5,6,6], andrew:[6,5,7,7]},
+  2:{shawn:[5,5,4,6], andrew:[4,4,4,4]},
+  3:{shawn:[4,3,4,3], andrew:[5,4,4,4]},
+  4:{shawn:[4,5,5,6], andrew:[4,4,5,4]},
+  5:{shawn:[4,3,4,3], andrew:[3,3,3,3]},
+  6:{shawn:[5,4,4,3], andrew:[6,6,4,4]},
+  7:{shawn:[6,5,6,6], andrew:[7,6,6,8]},
+  8:{shawn:[5,4,6,7], andrew:[5,5,5,6]},
+  9:{shawn:[6,5,5,4], andrew:[6,8,5,4]},
+};
+Object.keys(OPP).forEach(k=>{const o=OPP[k];o.best=o.shawn.map((s,i)=>Math.min(s,o.andrew[i]));});
+const TIPS={
+  6:'They convert this — bank your par',
+  7:'Your hole. Andrew melts down here — press hard',
+  8:'Slight edge you — a steady par takes it',
+  9:"They're sharper here — protect par",
+  1:'Shared cold start — both shaky, up for grabs',
+  2:'Reliable par for both — expect a halve',
+  3:'Par 3, dead even — halve it',
+  4:'They score this one — don\u2019t force it',
+  5:'Par 3, both make par — halve it',
+};
+const oppAvg=h=>avg(OPP[h].best);
+const jbFrontAvg=h=>avg(HOLES.find(x=>x.h===h).best);
+const fmtMargin=m=>{m=Math.round(m*100)/100;return Math.round(m)===m?m.toFixed(0):String(m);};
+
+function buildScout(){
+  let tjb=0,top=0;
+  const rows=SHOTGUN.map(h=>{
+    const hole=HOLES.find(x=>x.h===h);
+    const jb=Math.round(jbFrontAvg(h)*100)/100, op=Math.round(oppAvg(h)*100)/100;
+    tjb+=jb; top+=op;
+    const diff=Math.round((jb-op)*100)/100;
+    let edge,color;
+    if(Math.abs(diff)<0.13){edge='&#61; EVEN';color='var(--ink-soft)';}
+    else if(diff<0){edge='&#9650; YOU +'+fmtMargin(-diff);color='var(--fair-deep)';}
+    else{edge='&#9660; THEM +'+fmtMargin(diff);color='var(--flag)';}
+    return `<div class="scout-row ${h===6?'start':''}">
+      <div class="sr-hole"><span class="sr-num">${h}</span><span class="sr-meta">par ${hole.par} &middot; SI ${hole.si}</span>${h===6?'<span class="sr-start">TEE OFF</span>':''}</div>
+      <div class="sr-right">
+        <div class="sr-cells">
+          <div class="sr-cell" style="background:${heat(jb-hole.par)}"><span class="sr-lbl">You</span><span class="sr-v">${jb.toFixed(1)}</span></div>
+          <div class="sr-cell" style="background:${heat(op-hole.par)}"><span class="sr-lbl">Them</span><span class="sr-v">${op.toFixed(1)}</span></div>
+        </div>
+        <div class="sr-edge"><span class="ed" style="color:${color}">${edge}</span><span class="tip">${TIPS[h]||''}</span></div>
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('scoutList').innerHTML=rows;
+  document.getElementById('scoutTotYou').textContent=fmtVP(Math.round((tjb-36)*100)/100);
+  document.getElementById('scoutTotThem').textContent=fmtVP(Math.round((top-36)*100)/100);
+}
+
 /* ---------------- WIRING ---------------- */
-function renderAll(){ buildCard(); buildTrouble(); buildPtype(); buildNote(); buildDetail(); }
+function renderAll(){
+  const scout = VIEW==='scout';
+  document.querySelectorAll('.normal-sec').forEach(el=>{ el.style.display = scout ? 'none' : ''; });
+  document.getElementById('scoutView').style.display = scout ? '' : 'none';
+  if(scout){
+    buildScout();
+    document.getElementById('ctxNote').innerHTML='Head-to-head best-ball heat, in shotgun order from <b>Hole 6</b>.';
+    return;
+  }
+  buildCard(); buildTrouble(); buildPtype(); buildNote(); buildDetail();
+}
 document.querySelectorAll('.seg button').forEach(b=>{
   b.addEventListener('click',()=>{
     VIEW=b.dataset.view;
