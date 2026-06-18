@@ -355,14 +355,14 @@
         <button data-mode="gross" aria-pressed="false">Gross</button>
       </div>
       <h2 id="scoutTitle">Scouting · front nine, net vs Rhodus &amp; Parcell</h2>
-      <div class="ss-sub" id="scoutSub">Shotgun start — you tee off on <b>Hole 6</b> (order 6 → 7 → 8 → 9 → 1 → 2 → 3 → 4 → 5). Net best-ball using tournament playing handicaps off the low man. Strokes fall on holes <b>7, 1, 8, 4</b>; dots show how many of a side's players stroke there.</div>
+      <div class="ss-sub" id="scoutSub">Shotgun start — you tee off on <b>Hole 4</b> (order 4 → 5 → 6 → 7 → 8 → 9 → 1 → 2 → 3). Net best-ball using tournament playing handicaps off the low man. Strokes fall on holes <b>7, 1, 8, 4</b>; dots show how many of a side's players stroke there.</div>
       <div class="scout-hcp" id="scoutHcp">Playing handicaps — Shawn <b>0</b> · Brian <b>2</b> · Jeff <b>4</b> · Andrew <b>4</b></div>
       <div class="scout-tot">
         <div class="st"><div class="l">You — best ball</div><div class="n" id="scoutTotYou">+1.5</div></div>
         <div class="st"><div class="l">Them — best ball</div><div class="n" id="scoutTotThem">+1.5</div></div>
       </div>
       <span class="scout-even" id="scoutEven">Dead even on paper</span>
-      <div class="scout-keys" id="scoutKeys"><b>Hole 7 is the match</b> — you both stroke on your strongest hole for a net edge of +1.75. <b>Hole 1 flips your way</b> with two strokes, and you reach it warmed up (it's now your 5th hole) — attack it. Your real cold start is <b>hole 6</b> (no strokes, they edge it), so warm up first. Beware <b>hole 4</b> — Andrew strokes and scores it. With the par 3s likely halved, it tips on no-stroke <b>6 &amp; 9</b> — steal one.</div>
+      <div class="scout-keys" id="scoutKeys"><b>Hole 7 is the match</b> — you both stroke on your strongest hole for a net edge of +1.75. <b>Hole 1 flips your way</b> with two strokes, and you reach it late and warm (7th) — attack it. Mind the start: <b>hole 4</b> is your cold opener and their best net hole (Andrew strokes and scores it), so warm up and don't bleed early. With the par 3s likely halved, it tips on no-stroke <b>6 &amp; 9</b> — steal one.</div>
     </div>
     <div class="scout-list" id="scoutList"></div>
   </div>
@@ -623,7 +623,7 @@ function buildNote(){
 }
 
 /* ---------------- SCOUTING (net match play) ---------------- */
-const SHOTGUN=[6,7,8,9,1,2,3,4,5];
+const SHOTGUN=[4,5,6,7,8,9,1,2,3];
 // Rhodus & Parcell front-nine gross, chronological [Apr 23, May 7, May 21, Jun 4]
 // (Apr 23 partner was a sub, "Drew" Parcell)
 const OPP={
@@ -643,38 +643,38 @@ const PH={jeff:4, brian:2, shawn:0, andrew:4};
 const STROKE_ORDER=[7,1,8,4,9,5,3,2,6];
 const strokes=(ph,h)=> STROKE_ORDER.indexOf(h) < ph ? 1 : 0;
 const TIPS_NET={
-  6:'Your opening tee — both play it cold now. No strokes; warm up and nick it',
+  6:'No strokes — they edge it. Take your par',
   7:'You both stroke on your best hole — biggest net edge. Press',
   8:'Both sides stroke — plays even. Grind a par',
   9:"No strokes, they're sharper — protect par",
-  1:'Now played 5th, so you\u2019re warm — and you both stroke. Attack it',
+  1:'Played 7th — you\u2019re well warm, and you both stroke. Attack it',
   2:'No strokes, even — halve it',
   3:'Par 3, no strokes, even — halve it',
-  4:"Andrew strokes and scores it — their best hole. Don't bleed",
+  4:"Cold opener now, and Andrew strokes & scores it — warm up, don't bleed early",
   5:'Par 3, no strokes, even — halve it',
 };
 const TIPS_GROSS={
-  6:'Your opener now — both start cold. Bank a par',
+  6:'They convert this — bank your par',
   7:'Your hole. Andrew melts down here — press hard',
   8:'Slight edge you — a steady par takes it',
   9:"They're sharper here — protect par",
-  1:'Played 5th, both warmed up — up for grabs',
+  1:'Played 7th, both well warmed — up for grabs',
   2:'Reliable par for both — expect a halve',
   3:'Par 3, dead even — halve it',
-  4:"They score this one — don't force it",
+  4:"Cold opener now, and they score it — warm up, don't force it",
   5:'Par 3, both make par — halve it',
 };
 const SCOUT_COPY={
   net:{
     title:'Scouting · front nine, net vs Rhodus &amp; Parcell',
-    sub:'Shotgun start — you tee off on <b>Hole 6</b> (order 6 → 7 → 8 → 9 → 1 → 2 → 3 → 4 → 5). Net best-ball using tournament playing handicaps off the low man. Strokes fall on holes <b>7, 1, 8, 4</b>; dots show how many of a side\u2019s players stroke there.',
-    keys:'<b>Hole 7 is the match</b> — you both stroke on your strongest hole for a net edge of +1.75. <b>Hole 1 flips your way</b> with two strokes, and you reach it warmed up (it\u2019s now your 5th hole) — attack it. Your real cold start is <b>hole 6</b> (no strokes, they edge it), so warm up first. Beware <b>hole 4</b> — Andrew strokes and scores it. With the par 3s likely halved, it tips on no-stroke <b>6 &amp; 9</b> — steal one.',
+    sub:'Shotgun start — you tee off on <b>Hole 4</b> (order 4 → 5 → 6 → 7 → 8 → 9 → 1 → 2 → 3). Net best-ball using tournament playing handicaps off the low man. Strokes fall on holes <b>7, 1, 8, 4</b>; dots show how many of a side\u2019s players stroke there.',
+    keys:'<b>Hole 7 is the match</b> — you both stroke on your strongest hole for a net edge of +1.75. <b>Hole 1 flips your way</b> with two strokes, and you reach it late and warm (7th) — attack it. Mind the start: <b>hole 4</b> is your cold opener and their best net hole (Andrew strokes and scores it), so warm up and don\u2019t bleed early. With the par 3s likely halved, it tips on no-stroke <b>6 &amp; 9</b> — steal one.',
     tips:TIPS_NET, hcp:true, even:'Dead even on paper'
   },
   gross:{
     title:'Scouting · front nine, gross vs Rhodus &amp; Parcell',
-    sub:'Shotgun start — you tee off on <b>Hole 6</b> (order 6 → 7 → 8 → 9 → 1 → 2 → 3 → 4 → 5). Raw best-ball average vs par — no handicap strokes applied.',
-    keys:'<b>Win hole 7</b> — your par-5 strength and their weakest hole. Your cold start is now <b>hole 6</b>; you reach <b>hole 1</b> warmed up (5th). They out-score you on the mid par 4s (<b>4, 6</b>) and <b>9</b>, so halve the par 3s and don\u2019t give those back. Gross, they sit about a shot better per nine.',
+    sub:'Shotgun start — you tee off on <b>Hole 4</b> (order 4 → 5 → 6 → 7 → 8 → 9 → 1 → 2 → 3). Raw best-ball average vs par — no handicap strokes applied.',
+    keys:'<b>Win hole 7</b> — your par-5 strength and their weakest hole. Your cold start is now <b>hole 4</b> (also a hole they score), so warm up; you reach <b>hole 1</b> late and warm (7th). They out-score you on the mid par 4s (<b>4, 6</b>) and <b>9</b>, so halve the par 3s and don\u2019t give those back. Gross, they sit about a shot better per nine.',
     tips:TIPS_GROSS, hcp:false, even:''
   }
 };
@@ -702,8 +702,8 @@ function buildScout(){
     if(Math.abs(diff)<0.13){edge='&#61; EVEN';color='var(--ink-soft)';}
     else if(diff<0){edge='&#9650; YOU +'+fmtMargin(-diff);color='var(--fair-deep)';}
     else{edge='&#9660; THEM +'+fmtMargin(diff);color='var(--flag)';}
-    return `<div class="scout-row ${h===6?'start':''}">
-      <div class="sr-hole"><span class="sr-num">${h}</span><span class="sr-meta">par ${hole.par} &middot; SI ${hole.si}</span>${h===6?'<span class="sr-start">TEE OFF</span>':''}</div>
+    return `<div class="scout-row ${h===4?'start':''}">
+      <div class="sr-hole"><span class="sr-num">${h}</span><span class="sr-meta">par ${hole.par} &middot; SI ${hole.si}</span>${h===4?'<span class="sr-start">TEE OFF</span>':''}</div>
       <div class="sr-right">
         <div class="sr-cells">
           <div class="sr-cell" style="background:${heat(nb.you-hole.par)}"><span class="sr-lbl">You${pips(youStrk)}</span><span class="sr-v">${nb.you.toFixed(1)}</span></div>
@@ -732,7 +732,7 @@ function renderAll(){
   document.getElementById('scoutView').style.display = scout ? '' : 'none';
   if(scout){
     buildScout();
-    document.getElementById('ctxNote').innerHTML='Net best-ball head-to-head, in shotgun order from <b>Hole 6</b>.';
+    document.getElementById('ctxNote').innerHTML='Net best-ball head-to-head, in shotgun order from <b>Hole 4</b>.';
     return;
   }
   buildCard(); buildTrouble(); buildPtype(); buildNote(); buildDetail();
