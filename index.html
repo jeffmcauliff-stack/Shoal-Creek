@@ -132,7 +132,8 @@
   .hole:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
   .hole.sel{box-shadow:0 0 0 2px var(--ink)}
   .hole .num{font-size:11px;color:var(--ink-soft);padding:5px 0 1px;font-weight:500}
-  .hole .par{font-size:9.5px;color:#8a8a7a;padding-bottom:5px;letter-spacing:.03em}
+  .hole .par{font-size:9.5px;color:#8a8a7a;padding-bottom:1px;letter-spacing:.03em}
+  .hole .yds{font-size:9px;color:#a59b86;padding-bottom:5px;letter-spacing:.02em;font-variant-numeric:tabular-nums}
   .hole .swatch{
     font-family:'Fraunces',serif;font-weight:600;font-size:19px;color:#fff;
     padding:8px 0;line-height:1;position:relative;
@@ -383,24 +384,24 @@ const FRONT_WEEKS = ['Apr 23','May 7','May 21','Jun 4','Jun 18'];
 const BACK_WEEKS  = ['Apr 30','May 14','May 28','Jun 11'];
 
 const HOLES = [
-  {h:1, par:4, si:3,  nine:'F', jeff:[6,6,6,4,8], brian:[6,6,5,5,5]},
-  {h:2, par:4, si:15, nine:'F', jeff:[4,4,7,5,5], brian:[4,6,4,4,5]},
-  {h:3, par:3, si:13, nine:'F', jeff:[4,6,4,3,4], brian:[4,3,4,4,3]},
-  {h:4, par:4, si:7,  nine:'F', jeff:[5,6,6,4,5], brian:[4,6,6,4,4]},
-  {h:5, par:3, si:11, nine:'F', jeff:[4,4,4,4,4], brian:[3,3,4,2,3]},
-  {h:6, par:4, si:17, nine:'F', jeff:[5,6,5,5,4], brian:[5,7,4,4,3]},
-  {h:7, par:5, si:1,  nine:'F', jeff:[6,6,5,5,6], brian:[7,4,7,4,6]},
-  {h:8, par:4, si:5,  nine:'F', jeff:[5,6,5,6,7], brian:[7,4,6,5,4]},
-  {h:9, par:5, si:9,  nine:'F', jeff:[5,6,6,6,4], brian:[5,6,6,6,5]},
-  {h:10,par:4, si:10, nine:'B', jeff:[4,5,6,6], brian:[4,4,6,4]},
-  {h:11,par:3, si:14, nine:'B', jeff:[5,3,3,6], brian:[3,4,5,4]},
-  {h:12,par:4, si:16, nine:'B', jeff:[5,5,7,3], brian:[5,5,5,6]},
-  {h:13,par:5, si:4,  nine:'B', jeff:[5,6,4,4], brian:[6,6,7,6]},
-  {h:14,par:4, si:6,  nine:'B', jeff:[6,5,4,6], brian:[4,6,5,4]},
-  {h:15,par:4, si:8,  nine:'B', jeff:[5,6,4,7], brian:[5,5,6,6]},
-  {h:16,par:4, si:18, nine:'B', jeff:[6,6,4,4], brian:[5,4,4,4]},
-  {h:17,par:3, si:12, nine:'B', jeff:[4,4,3,5], brian:[4,4,4,4]},
-  {h:18,par:4, si:2,  nine:'B', jeff:[7,6,4,5], brian:[6,7,5,5]},
+  {h:1, par:4, si:3,  yds:398, nine:'F', jeff:[6,6,6,4,8], brian:[6,6,5,5,5]},
+  {h:2, par:4, si:15, yds:354, nine:'F', jeff:[4,4,7,5,5], brian:[4,6,4,4,5]},
+  {h:3, par:3, si:13, yds:168, nine:'F', jeff:[4,6,4,3,4], brian:[4,3,4,4,3]},
+  {h:4, par:4, si:7,  yds:384, nine:'F', jeff:[5,6,6,4,5], brian:[4,6,6,4,4]},
+  {h:5, par:3, si:11, yds:179, nine:'F', jeff:[4,4,4,4,4], brian:[3,3,4,2,3]},
+  {h:6, par:4, si:17, yds:333, nine:'F', jeff:[5,6,5,5,4], brian:[5,7,4,4,3]},
+  {h:7, par:5, si:1,  yds:545, nine:'F', jeff:[6,6,5,5,6], brian:[7,4,7,4,6]},
+  {h:8, par:4, si:5,  yds:398, nine:'F', jeff:[5,6,5,6,7], brian:[7,4,6,5,4]},
+  {h:9, par:5, si:9,  yds:478, nine:'F', jeff:[5,6,6,6,4], brian:[5,6,6,6,5]},
+  {h:10,par:4, si:10, yds:363, nine:'B', jeff:[4,5,6,6], brian:[4,4,6,4]},
+  {h:11,par:3, si:14, yds:190, nine:'B', jeff:[5,3,3,6], brian:[3,4,5,4]},
+  {h:12,par:4, si:16, yds:305, nine:'B', jeff:[5,5,7,3], brian:[5,5,5,6]},
+  {h:13,par:5, si:4,  yds:492, nine:'B', jeff:[5,6,4,4], brian:[6,6,7,6]},
+  {h:14,par:4, si:6,  yds:387, nine:'B', jeff:[6,5,4,6], brian:[4,6,5,4]},
+  {h:15,par:4, si:8,  yds:387, nine:'B', jeff:[5,6,4,7], brian:[5,5,6,6]},
+  {h:16,par:4, si:18, yds:319, nine:'B', jeff:[6,6,4,4], brian:[5,4,4,4]},
+  {h:17,par:3, si:12, yds:157, nine:'B', jeff:[4,4,3,5], brian:[4,4,4,4]},
+  {h:18,par:4, si:2,  yds:429, nine:'B', jeff:[7,6,4,5], brian:[6,7,5,5]},
 ];
 
 const avg = a => a.reduce((s,x)=>s+x,0)/a.length;
@@ -463,6 +464,7 @@ function cell(h){
   return `<button class="hole ${SEL===h.h?'sel':''}" data-h="${h.h}" aria-label="Hole ${h.h}, par ${h.par}, average ${sc}">
     <div class="num">${h.h}</div>
     <div class="par">par ${h.par}</div>
+    <div class="yds">${h.yds} yds</div>
     <div class="swatch" style="background:${heat(vp)}">
       <span class="si-flag">SI${h.si}</span>
       ${sc.toFixed(1)}
@@ -492,7 +494,7 @@ function buildDetail(){
     </div>`).join('');
   d.innerHTML=`
     <div class="dh">
-      <h3>Hole ${h.h} · par ${h.par}</h3>
+      <h3>Hole ${h.h} · par ${h.par} · ${h.yds} yds</h3>
       <div class="tag">stroke index ${h.si} &nbsp;·&nbsp; Jeff ${fmtVP(h.jeffVP)} &nbsp;·&nbsp; Brian ${fmtVP(h.brianVP)} &nbsp;·&nbsp; team ${fmtVP(h.teamVP)}</div>
     </div>
     <div class="rounds">${rounds}</div>`;
@@ -696,7 +698,7 @@ function buildScout(){
     else{edge='&#9660; THEM +'+fmtMargin(diff);color='var(--flag)';}
     const isStart=(START!=null && h===START);
     return `<div class="scout-row ${isStart?'start':''}">
-      <div class="sr-hole"><span class="sr-num">${h}</span><span class="sr-meta">par ${hole.par} &middot; SI ${hole.si}</span>${isStart?'<span class="sr-start">TEE OFF</span>':''}</div>
+      <div class="sr-hole"><span class="sr-num">${h}</span><span class="sr-meta">par ${hole.par} &middot; ${hole.yds}y &middot; SI ${hole.si}</span>${isStart?'<span class="sr-start">TEE OFF</span>':''}</div>
       <div class="sr-right">
         <div class="sr-cells">
           <div class="sr-cell" style="background:${heat(nb.you-hole.par)}"><span class="sr-lbl">You${pips(youStrk)}</span><span class="sr-v">${nb.you.toFixed(1)}</span></div>
