@@ -260,11 +260,36 @@
   .sr-edge{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11.5px}
   .sr-edge .ed{font-weight:500;white-space:nowrap}
   .sr-edge .tip{color:var(--ink-soft);font-size:10.5px;text-align:right;line-height:1.3}
+  .sr-wx{margin-top:4px;font-size:10px;line-height:1.35;color:#8a7a52;font-style:italic}
+  .scout-wx{margin:8px 0 2px;padding:8px 10px;background:rgba(201,162,75,.10);border:1px solid rgba(201,162,75,.28);border-radius:8px;font-size:11px;line-height:1.5;color:var(--ink)}
+  .scout-wx .wx-cav{color:var(--ink-soft);font-style:italic}
   @media (max-width:420px){
     .scout-row{grid-template-columns:70px 1fr;gap:10px;padding:10px 11px}
     .sr-edge{flex-direction:column;align-items:flex-start;gap:2px}
     .sr-edge .tip{text-align:left}
   }
+
+  .champ-won{margin:0 0 14px;padding:12px 14px;border-radius:10px;background:linear-gradient(135deg,rgba(201,162,75,.22),rgba(201,162,75,.08));border:1px solid rgba(201,162,75,.55);color:var(--ink);font-size:13px;line-height:1.45}
+  .champ-won b{color:#8a6d1e;font-size:15px}
+  .sched-head{margin-bottom:14px}
+  .sched-head h2{margin:0 0 3px;font-family:Fraunces,serif;font-size:20px;color:var(--pine,#1B3A2F)}
+  .sched-champ{margin:2px 0 6px;padding:7px 11px;border-radius:8px;background:linear-gradient(135deg,rgba(201,162,75,.22),rgba(201,162,75,.07));border:1px solid rgba(201,162,75,.5);font-size:12px;color:#8a6d1e;font-weight:600}
+  .sched-sub{font-size:11.5px;color:var(--ink-soft);letter-spacing:.02em}
+  .sched-list{display:flex;flex-direction:column;gap:8px}
+  .sched-row{display:flex;align-items:center;gap:12px;padding:11px 13px;background:var(--card,#fff);border:1px solid rgba(27,58,47,.14);border-radius:10px}
+  .sched-rnd{flex:none;width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(27,58,47,.08);color:var(--pine,#1B3A2F);font-family:DM Mono,monospace;font-size:13px;font-weight:600}
+  .sched-mid{flex:1;min-width:0}
+  .sched-opp{font-family:Fraunces,serif;font-size:15px;color:var(--ink);font-weight:600}
+  .sched-meta{font-size:11px;color:var(--ink-soft);letter-spacing:.02em;margin-top:2px}
+  .sched-tag{flex:none;font-size:9.5px;font-weight:700;letter-spacing:.08em;color:#fff;background:var(--fair-deep,#2E5E3A);padding:3px 8px;border-radius:999px}
+  .sched-next{border-color:rgba(201,162,75,.6);box-shadow:0 0 0 1px rgba(201,162,75,.25) inset}
+  .sched-next .sched-rnd{background:rgba(201,162,75,.2);color:#8a6d1e}
+  .sched-bye{opacity:.62}
+  .sched-bye .sched-opp{font-style:italic;font-weight:500}
+  .sched-res{flex:none;font-size:9.5px;font-weight:700;letter-spacing:.06em;padding:3px 8px;border-radius:999px}
+  .sched-res.win{color:#fff;background:var(--fair-deep,#2E5E3A)}
+  .sched-res.tie{color:#5a4a1e;background:rgba(201,162,75,.35)}
+  .sched-res.loss{color:#fff;background:var(--flag,#C2432B)}
 </style>
 </head>
 <body>
@@ -277,9 +302,29 @@
   <header>
     <div class="eyebrow">Shoal Creek · Thursday Best-Ball League · 9-hole match play</div>
     <h1>McAuliff <span class="amp">&amp;</span> McAuliff</h1>
-    <div class="sub">9 rounds · Apr 23 – Jun 18, 2026 · <b>Jeff</b> &amp; <b>Brian</b> · front nine ×5, back nine ×4</div>
+    <div class="sub">18 rounds · Apr 23 – Sep 10, 2026 · <b>Jeff</b> &amp; <b>Brian</b> · front nine ×10, back nine ×8</div>
 
-    <div class="band" id="band"></div>
+    <div class="band" id="band">
+    <div class="stat">
+      <div class="k">Team best-ball</div>
+      <div class="v">+3.5 <small>avg / 9 vs par</small></div>
+      <div class="trend">18-round average</div>
+    </div>
+    <div class="stat">
+      <div class="k">Best week</div>
+      <div class="v">E <small>Jun 4 (front)</small></div>
+      <div class="trend">season low</div>
+    </div>
+    <div class="stat">
+      <div class="k">Recent 3 wks</div>
+      <div class="v">+1.7 <small>Aug 27 → Sep 10</small></div>
+      <div class="trend">↓ 4.33 vs first 3</div>
+    </div>
+    <div class="stat">
+      <div class="k">Hardest hole</div>
+      <div class="v">#18 <small>team +1.3</small></div>
+      <div class="trend">SI 2 · par 4</div>
+    </div></div>
   </header>
 
   <div class="controls">
@@ -288,6 +333,7 @@
       <button data-view="jeff" aria-pressed="false">Jeff</button>
       <button data-view="brian" aria-pressed="false">Brian</button>
       <button data-view="scout" aria-pressed="false">Scouting</button>
+      <button data-view="sched" aria-pressed="false">Schedule</button>
     </div>
     <div class="ctx-note" id="ctxNote">Best ball only hurts when <b>neither</b> makes par. Trouble clusters on the long par 4s — #1, #18, #4. Strength: hole #7 (-0.25).</div>
   </div>
@@ -301,11 +347,173 @@
 
     <div class="nine-label">Front nine · par 36</div>
     <div class="swipe-hint">← swipe to see all nine →</div>
-    <div class="scorecard-scroll"><div class="holes" id="front"></div></div>
+    <div class="scorecard-scroll"><div class="holes" id="front"><button class="hole " data-h="1" aria-label="Hole 1, par 4, average 5">
+    <div class="num">1</div>
+    <div class="par">par 4</div>
+    <div class="yds">398 yds</div>
+    <div class="swatch" style="background:#D9714F">
+      <span class="si-flag">SI3</span>
+      5.0
+      <span class="vp">+1</span>
+    </div>
+  </button><button class="hole " data-h="2" aria-label="Hole 2, par 4, average 4.1">
+    <div class="num">2</div>
+    <div class="par">par 4</div>
+    <div class="yds">354 yds</div>
+    <div class="swatch" style="background:#5C9A4F">
+      <span class="si-flag">SI15</span>
+      4.1
+      <span class="vp">+0.1</span>
+    </div>
+  </button><button class="hole " data-h="3" aria-label="Hole 3, par 3, average 3.4">
+    <div class="num">3</div>
+    <div class="par">par 3</div>
+    <div class="yds">168 yds</div>
+    <div class="swatch" style="background:#D8A85A">
+      <span class="si-flag">SI13</span>
+      3.4
+      <span class="vp">+0.4</span>
+    </div>
+  </button><button class="hole " data-h="4" aria-label="Hole 4, par 4, average 4.7">
+    <div class="num">4</div>
+    <div class="par">par 4</div>
+    <div class="yds">384 yds</div>
+    <div class="swatch" style="background:#D8A85A">
+      <span class="si-flag">SI7</span>
+      4.7
+      <span class="vp">+0.7</span>
+    </div>
+  </button><button class="hole " data-h="5" aria-label="Hole 5, par 3, average 2.9">
+    <div class="num">5</div>
+    <div class="par">par 3</div>
+    <div class="yds">179 yds</div>
+    <div class="swatch" style="background:#5C9A4F">
+      <span class="si-flag">SI11</span>
+      2.9
+      <span class="vp">-0.1</span>
+    </div>
+  </button><button class="hole " data-h="6" aria-label="Hole 6, par 4, average 4.3">
+    <div class="num">6</div>
+    <div class="par">par 4</div>
+    <div class="yds">333 yds</div>
+    <div class="swatch" style="background:#D8A85A">
+      <span class="si-flag">SI17</span>
+      4.3
+      <span class="vp">+0.3</span>
+    </div>
+  </button><button class="hole " data-h="7" aria-label="Hole 7, par 5, average 5.2">
+    <div class="num">7</div>
+    <div class="par">par 5</div>
+    <div class="yds">545 yds</div>
+    <div class="swatch" style="background:#5C9A4F">
+      <span class="si-flag">SI1</span>
+      5.2
+      <span class="vp">+0.2</span>
+    </div>
+  </button><button class="hole " data-h="8" aria-label="Hole 8, par 4, average 4.5">
+    <div class="num">8</div>
+    <div class="par">par 4</div>
+    <div class="yds">398 yds</div>
+    <div class="swatch" style="background:#D8A85A">
+      <span class="si-flag">SI5</span>
+      4.5
+      <span class="vp">+0.5</span>
+    </div>
+  </button><button class="hole " data-h="9" aria-label="Hole 9, par 5, average 5.2">
+    <div class="num">9</div>
+    <div class="par">par 5</div>
+    <div class="yds">478 yds</div>
+    <div class="swatch" style="background:#5C9A4F">
+      <span class="si-flag">SI9</span>
+      5.2
+      <span class="vp">+0.2</span>
+    </div>
+  </button></div></div>
 
     <div class="nine-label">Back nine · par 35</div>
     <div class="swipe-hint">← swipe to see all nine →</div>
-    <div class="scorecard-scroll"><div class="holes" id="back"></div></div>
+    <div class="scorecard-scroll"><div class="holes" id="back"><button class="hole " data-h="10" aria-label="Hole 10, par 4, average 4.25">
+    <div class="num">10</div>
+    <div class="par">par 4</div>
+    <div class="yds">363 yds</div>
+    <div class="swatch" style="background:#5C9A4F">
+      <span class="si-flag">SI10</span>
+      4.3
+      <span class="vp">+0.3</span>
+    </div>
+  </button><button class="hole " data-h="11" aria-label="Hole 11, par 3, average 3.38">
+    <div class="num">11</div>
+    <div class="par">par 3</div>
+    <div class="yds">190 yds</div>
+    <div class="swatch" style="background:#D8A85A">
+      <span class="si-flag">SI14</span>
+      3.4
+      <span class="vp">+0.4</span>
+    </div>
+  </button><button class="hole " data-h="12" aria-label="Hole 12, par 4, average 4.38">
+    <div class="num">12</div>
+    <div class="par">par 4</div>
+    <div class="yds">305 yds</div>
+    <div class="swatch" style="background:#D8A85A">
+      <span class="si-flag">SI16</span>
+      4.4
+      <span class="vp">+0.4</span>
+    </div>
+  </button><button class="hole " data-h="13" aria-label="Hole 13, par 5, average 5">
+    <div class="num">13</div>
+    <div class="par">par 5</div>
+    <div class="yds">492 yds</div>
+    <div class="swatch" style="background:#5C9A4F">
+      <span class="si-flag">SI4</span>
+      5.0
+      <span class="vp">E</span>
+    </div>
+  </button><button class="hole " data-h="14" aria-label="Hole 14, par 4, average 4.25">
+    <div class="num">14</div>
+    <div class="par">par 4</div>
+    <div class="yds">387 yds</div>
+    <div class="swatch" style="background:#5C9A4F">
+      <span class="si-flag">SI6</span>
+      4.3
+      <span class="vp">+0.3</span>
+    </div>
+  </button><button class="hole " data-h="15" aria-label="Hole 15, par 4, average 4.63">
+    <div class="num">15</div>
+    <div class="par">par 4</div>
+    <div class="yds">387 yds</div>
+    <div class="swatch" style="background:#D8A85A">
+      <span class="si-flag">SI8</span>
+      4.6
+      <span class="vp">+0.6</span>
+    </div>
+  </button><button class="hole " data-h="16" aria-label="Hole 16, par 4, average 4.25">
+    <div class="num">16</div>
+    <div class="par">par 4</div>
+    <div class="yds">319 yds</div>
+    <div class="swatch" style="background:#5C9A4F">
+      <span class="si-flag">SI18</span>
+      4.3
+      <span class="vp">+0.3</span>
+    </div>
+  </button><button class="hole " data-h="17" aria-label="Hole 17, par 3, average 3.38">
+    <div class="num">17</div>
+    <div class="par">par 3</div>
+    <div class="yds">157 yds</div>
+    <div class="swatch" style="background:#D8A85A">
+      <span class="si-flag">SI12</span>
+      3.4
+      <span class="vp">+0.4</span>
+    </div>
+  </button><button class="hole " data-h="18" aria-label="Hole 18, par 4, average 5.25">
+    <div class="num">18</div>
+    <div class="par">par 4</div>
+    <div class="yds">429 yds</div>
+    <div class="swatch" style="background:#D9714F">
+      <span class="si-flag">SI2</span>
+      5.3
+      <span class="vp">+1.3</span>
+    </div>
+  </button></div></div>
 
     <div class="legend">
       <span class="sw"><i class="dot" style="background:var(--fair-deep)"></i> under par</span>
@@ -327,12 +535,102 @@
     <div class="panel">
       <h3 id="trblTitle">Where the shots leak (best ball)</h3>
       <div class="ph">Each bar diverges from par — leaks grow right, strengths left. Worst first.</div>
-      <div class="ranklist" id="troubleList"></div>
+      <div class="ranklist" id="troubleList"><div class="rankrow">
+      <span class="rk-h">#18<small>par 4 &middot; SI 2</small></span>
+      <span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:50%;background:#D9714F"></span></span>
+      <span class="rk-val" style="color:#D9714F">+1.3</span>
+    </div><div class="rankrow">
+      <span class="rk-h">#1<small>par 4 &middot; SI 3</small></span>
+      <span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:40%;background:#D9714F"></span></span>
+      <span class="rk-val" style="color:#D9714F">+1</span>
+    </div><div class="rankrow">
+      <span class="rk-h">#4<small>par 4 &middot; SI 7</small></span>
+      <span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:27.999999999999996%;background:#D8A85A"></span></span>
+      <span class="rk-val" style="color:#D8A85A">+0.7</span>
+    </div><div class="rankrow">
+      <span class="rk-h">#15<small>par 4 &middot; SI 8</small></span>
+      <span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:25.2%;background:#D8A85A"></span></span>
+      <span class="rk-val" style="color:#D8A85A">+0.6</span>
+    </div><div class="rankrow">
+      <span class="rk-h">#8<small>par 4 &middot; SI 5</small></span>
+      <span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:20%;background:#D8A85A"></span></span>
+      <span class="rk-val" style="color:#D8A85A">+0.5</span>
+    </div><div class="rankrow">
+      <span class="rk-h">#3<small>par 3 &middot; SI 13</small></span>
+      <span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:16%;background:#D8A85A"></span></span>
+      <span class="rk-val" style="color:#D8A85A">+0.4</span>
+    </div><div class="rankrow">
+      <span class="rk-h">#11<small>par 3 &middot; SI 14</small></span>
+      <span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:15.2%;background:#D8A85A"></span></span>
+      <span class="rk-val" style="color:#D8A85A">+0.4</span>
+    </div><div class="rankrow">
+      <span class="rk-h">#12<small>par 4 &middot; SI 16</small></span>
+      <span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:15.2%;background:#D8A85A"></span></span>
+      <span class="rk-val" style="color:#D8A85A">+0.4</span>
+    </div><div class="rankrow">
+      <span class="rk-h">#17<small>par 3 &middot; SI 12</small></span>
+      <span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:15.2%;background:#D8A85A"></span></span>
+      <span class="rk-val" style="color:#D8A85A">+0.4</span>
+    </div><div class="rankrow">
+      <span class="rk-h">#6<small>par 4 &middot; SI 17</small></span>
+      <span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:12%;background:#D8A85A"></span></span>
+      <span class="rk-val" style="color:#D8A85A">+0.3</span>
+    </div><div class="rankrow">
+      <span class="rk-h">#10<small>par 4 &middot; SI 10</small></span>
+      <span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:10%;background:#5C9A4F"></span></span>
+      <span class="rk-val" style="color:#5C9A4F">+0.3</span>
+    </div><div class="rankrow">
+      <span class="rk-h">#14<small>par 4 &middot; SI 6</small></span>
+      <span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:10%;background:#5C9A4F"></span></span>
+      <span class="rk-val" style="color:#5C9A4F">+0.3</span>
+    </div><div class="rankrow">
+      <span class="rk-h">#16<small>par 4 &middot; SI 18</small></span>
+      <span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:10%;background:#5C9A4F"></span></span>
+      <span class="rk-val" style="color:#5C9A4F">+0.3</span>
+    </div><div class="rankrow">
+      <span class="rk-h">#7<small>par 5 &middot; SI 1</small></span>
+      <span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:8%;background:#5C9A4F"></span></span>
+      <span class="rk-val" style="color:#5C9A4F">+0.2</span>
+    </div><div class="rankrow">
+      <span class="rk-h">#9<small>par 5 &middot; SI 9</small></span>
+      <span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:8%;background:#5C9A4F"></span></span>
+      <span class="rk-val" style="color:#5C9A4F">+0.2</span>
+    </div><div class="rankrow">
+      <span class="rk-h">#2<small>par 4 &middot; SI 15</small></span>
+      <span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:4%;background:#5C9A4F"></span></span>
+      <span class="rk-val" style="color:#5C9A4F">+0.1</span>
+    </div><div class="rankrow">
+      <span class="rk-h">#13<small>par 5 &middot; SI 4</small></span>
+      <span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:50%;width:0%;background:#5C9A4F"></span></span>
+      <span class="rk-val" style="color:#5C9A4F">E</span>
+    </div><div class="rankrow">
+      <span class="rk-h">#5<small>par 3 &middot; SI 11</small></span>
+      <span class="rk-track"><span class="rk-mid"></span><span class="rk-fill" style="left:46%;width:4%;background:#5C9A4F"></span></span>
+      <span class="rk-val" style="color:#5C9A4F">-0.1</span>
+    </div></div>
     </div>
     <div class="panel">
       <h3 id="ptTitle">Best ball by hole type</h3>
       <div class="ph">Average vs par on the par 3s, 4s and 5s</div>
-      <div class="ptype" id="ptypeWrap"></div>
+      <div class="ptype" id="ptypeWrap"><div class="ptrow">
+      <div class="pt-top"><span class="lbl">Par 3 <span style="color:#6f8a7a">· 4 holes</span></span><span style="color:#5C9A4F">+0.3 / hole</span></div>
+      <div class="pt-track">
+        <div class="pt-mid"></div>
+        <div class="pt-fill" style="left:50%;width:8.333333333333332%;background:#5C9A4F"></div>
+      </div>
+    </div><div class="ptrow">
+      <div class="pt-top"><span class="lbl">Par 4 <span style="color:#6f8a7a">· 11 holes</span></span><span style="color:#D8A85A">+0.5 / hole</span></div>
+      <div class="pt-track">
+        <div class="pt-mid"></div>
+        <div class="pt-fill" style="left:50%;width:17%;background:#D8A85A"></div>
+      </div>
+    </div><div class="ptrow">
+      <div class="pt-top"><span class="lbl">Par 5 <span style="color:#6f8a7a">· 3 holes</span></span><span style="color:#5C9A4F">+0.1 / hole</span></div>
+      <div class="pt-track">
+        <div class="pt-mid"></div>
+        <div class="pt-fill" style="left:50%;width:4.666666666666667%;background:#5C9A4F"></div>
+      </div>
+    </div></div>
     </div>
   </div>
 
@@ -341,7 +639,7 @@
     <h3>Week-by-week form</h3>
     <div class="ph">Team best-ball score vs par each week — and how the recent stretch turned</div>
     <div class="swipe-hint" style="color:#8FAD9C;padding:0 0 4px 4px">← swipe chart →</div>
-    <div class="chartwrap"><svg id="trend" viewBox="0 0 760 260" role="img" aria-label="Weekly best-ball vs par trend"></svg></div>
+    <div class="chartwrap"><svg id="trend" viewBox="0 0 760 260" role="img" aria-label="Weekly best-ball vs par trend"><line class="gl" x1="42" y1="226" x2="1166" y2="226"/><text class="axis" x="34" y="229" text-anchor="end">37</text><line class="gl" x1="42" y1="196.28571428571428" x2="1166" y2="196.28571428571428"/><text class="axis" x="34" y="199.28571428571428" text-anchor="end">39</text><line class="gl" x1="42" y1="166.57142857142858" x2="1166" y2="166.57142857142858"/><text class="axis" x="34" y="169.57142857142858" text-anchor="end">41</text><line class="gl" x1="42" y1="136.85714285714283" x2="1166" y2="136.85714285714283"/><text class="axis" x="34" y="139.85714285714283" text-anchor="end">43</text><line class="gl" x1="42" y1="107.14285714285714" x2="1166" y2="107.14285714285714"/><text class="axis" x="34" y="110.14285714285714" text-anchor="end">45</text><line class="gl" x1="42" y1="77.42857142857142" x2="1166" y2="77.42857142857142"/><text class="axis" x="34" y="80.42857142857142" text-anchor="end">47</text><line class="gl" x1="42" y1="47.71428571428571" x2="1166" y2="47.71428571428571"/><text class="axis" x="34" y="50.71428571428571" text-anchor="end">49</text><line class="gl" x1="42" y1="18" x2="1166" y2="18"/><text class="axis" x="34" y="21" text-anchor="end">51</text><text class="axis" x="42" y="242" text-anchor="middle">Apr 23</text><text class="axis" x="108.11764705882354" y="242" text-anchor="middle">Apr 30</text><text class="axis" x="174.23529411764707" y="242" text-anchor="middle">May 7</text><text class="axis" x="240.3529411764706" y="242" text-anchor="middle">May 14</text><text class="axis" x="306.47058823529414" y="242" text-anchor="middle">May 21</text><text class="axis" x="372.5882352941177" y="242" text-anchor="middle">May 28</text><text class="axis" x="438.7058823529412" y="242" text-anchor="middle">Jun 4</text><text class="axis" x="504.82352941176475" y="242" text-anchor="middle">Jun 11</text><text class="axis" x="570.9411764705883" y="242" text-anchor="middle">Jun 18</text><text class="axis" x="637.0588235294118" y="242" text-anchor="middle">Jul 2</text><text class="axis" x="703.1764705882354" y="242" text-anchor="middle">Jul 9</text><text class="axis" x="769.2941176470589" y="242" text-anchor="middle">Jul 23</text><text class="axis" x="835.4117647058824" y="242" text-anchor="middle">Jul 30</text><text class="axis" x="901.529411764706" y="242" text-anchor="middle">Aug 6</text><text class="axis" x="967.6470588235295" y="242" text-anchor="middle">Aug 13</text><text class="axis" x="1033.7647058823532" y="242" text-anchor="middle">Aug 20</text><text class="axis" x="1099.8823529411766" y="242" text-anchor="middle">Aug 27</text><text class="axis" x="1166" y="242" text-anchor="middle">Sep 10</text><text class="axis" x="12" y="12" text-anchor="start">gross</text><path d="M 42 64.22222222222223 L 108.11764705882354 64.22222222222223 L 174.23529411764707 64.22222222222223 L 240.3529411764706 41.111111111111114 L 306.47058823529414 41.111111111111114 L 372.5882352941177 156.66666666666666 L 438.7058823529412 202.88888888888889 L 504.82352941176475 133.55555555555554 L 570.9411764705883 179.77777777777777 L 637.0588235294118 202.88888888888889 L 703.1764705882354 202.88888888888889 L 769.2941176470589 41.111111111111114 L 835.4117647058824 110.44444444444444 L 901.529411764706 133.55555555555554 L 967.6470588235295 64.22222222222223 L 1033.7647058823532 156.66666666666666 L 1099.8823529411766 179.77777777777777 L 1166 156.66666666666666 L 1166 226 L 42 226 Z" fill="rgba(201,162,75,.14)"/><path d="M 42 64.22222222222223 L 108.11764705882354 64.22222222222223 L 174.23529411764707 64.22222222222223 L 240.3529411764706 41.111111111111114 L 306.47058823529414 41.111111111111114 L 372.5882352941177 156.66666666666666 L 438.7058823529412 202.88888888888889 L 504.82352941176475 133.55555555555554 L 570.9411764705883 179.77777777777777 L 637.0588235294118 202.88888888888889 L 703.1764705882354 202.88888888888889 L 769.2941176470589 41.111111111111114 L 835.4117647058824 110.44444444444444 L 901.529411764706 133.55555555555554 L 967.6470588235295 64.22222222222223 L 1033.7647058823532 156.66666666666666 L 1099.8823529411766 179.77777777777777 L 1166 156.66666666666666" fill="none" stroke="#C9A24B" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="42" cy="64.22222222222223" r="4.5" fill="#C9A24B"/><text x="42" y="54.22222222222223" text-anchor="middle" font-size="11" font-family="Fraunces,serif" font-weight="600" fill="#E9D9A6">+6</text><circle cx="108.11764705882354" cy="64.22222222222223" r="4.5" fill="#C9A24B"/><text x="108.11764705882354" y="54.22222222222223" text-anchor="middle" font-size="11" font-family="Fraunces,serif" font-weight="600" fill="#E9D9A6">+6</text><circle cx="174.23529411764707" cy="64.22222222222223" r="4.5" fill="#C9A24B"/><text x="174.23529411764707" y="54.22222222222223" text-anchor="middle" font-size="11" font-family="Fraunces,serif" font-weight="600" fill="#E9D9A6">+6</text><circle cx="240.3529411764706" cy="41.111111111111114" r="4.5" fill="#C9A24B"/><text x="240.3529411764706" y="31.111111111111114" text-anchor="middle" font-size="11" font-family="Fraunces,serif" font-weight="600" fill="#E9D9A6">+7</text><circle cx="306.47058823529414" cy="41.111111111111114" r="4.5" fill="#C9A24B"/><text x="306.47058823529414" y="31.111111111111114" text-anchor="middle" font-size="11" font-family="Fraunces,serif" font-weight="600" fill="#E9D9A6">+7</text><circle cx="372.5882352941177" cy="156.66666666666666" r="4.5" fill="#C9A24B"/><text x="372.5882352941177" y="146.66666666666666" text-anchor="middle" font-size="11" font-family="Fraunces,serif" font-weight="600" fill="#E9D9A6">+2</text><circle cx="438.7058823529412" cy="202.88888888888889" r="4.5" fill="#C9A24B"/><text x="438.7058823529412" y="192.88888888888889" text-anchor="middle" font-size="11" font-family="Fraunces,serif" font-weight="600" fill="#E9D9A6">E</text><circle cx="504.82352941176475" cy="133.55555555555554" r="4.5" fill="#C9A24B"/><text x="504.82352941176475" y="123.55555555555554" text-anchor="middle" font-size="11" font-family="Fraunces,serif" font-weight="600" fill="#E9D9A6">+3</text><circle cx="570.9411764705883" cy="179.77777777777777" r="4.5" fill="#C9A24B"/><text x="570.9411764705883" y="169.77777777777777" text-anchor="middle" font-size="11" font-family="Fraunces,serif" font-weight="600" fill="#E9D9A6">+1</text><circle cx="637.0588235294118" cy="202.88888888888889" r="4.5" fill="#C9A24B"/><text x="637.0588235294118" y="192.88888888888889" text-anchor="middle" font-size="11" font-family="Fraunces,serif" font-weight="600" fill="#E9D9A6">E</text><circle cx="703.1764705882354" cy="202.88888888888889" r="4.5" fill="#C9A24B"/><text x="703.1764705882354" y="192.88888888888889" text-anchor="middle" font-size="11" font-family="Fraunces,serif" font-weight="600" fill="#E9D9A6">E</text><circle cx="769.2941176470589" cy="41.111111111111114" r="4.5" fill="#C9A24B"/><text x="769.2941176470589" y="31.111111111111114" text-anchor="middle" font-size="11" font-family="Fraunces,serif" font-weight="600" fill="#E9D9A6">+7</text><circle cx="835.4117647058824" cy="110.44444444444444" r="4.5" fill="#C9A24B"/><text x="835.4117647058824" y="100.44444444444444" text-anchor="middle" font-size="11" font-family="Fraunces,serif" font-weight="600" fill="#E9D9A6">+4</text><circle cx="901.529411764706" cy="133.55555555555554" r="4.5" fill="#C9A24B"/><text x="901.529411764706" y="123.55555555555554" text-anchor="middle" font-size="11" font-family="Fraunces,serif" font-weight="600" fill="#E9D9A6">+3</text><circle cx="967.6470588235295" cy="64.22222222222223" r="4.5" fill="#C9A24B"/><text x="967.6470588235295" y="54.22222222222223" text-anchor="middle" font-size="11" font-family="Fraunces,serif" font-weight="600" fill="#E9D9A6">+6</text><circle cx="1033.7647058823532" cy="156.66666666666666" r="4.5" fill="#C9A24B"/><text x="1033.7647058823532" y="146.66666666666666" text-anchor="middle" font-size="11" font-family="Fraunces,serif" font-weight="600" fill="#E9D9A6">+2</text><circle cx="1099.8823529411766" cy="179.77777777777777" r="4.5" fill="#C9A24B"/><text x="1099.8823529411766" y="169.77777777777777" text-anchor="middle" font-size="11" font-family="Fraunces,serif" font-weight="600" fill="#E9D9A6">+1</text><circle cx="1166" cy="156.66666666666666" r="4.5" fill="#C9A24B"/><text x="1166" y="146.66666666666666" text-anchor="middle" font-size="11" font-family="Fraunces,serif" font-weight="600" fill="#E9D9A6">+2</text><path d="M 42 122 L 108.11764705882354 77.42857142857142 L 174.23529411764707 32.857142857142854 L 240.3529411764706 92.28571428571429 L 306.47058823529414 62.57142857142857 L 372.5882352941177 196.28571428571428 L 438.7058823529412 151.71428571428572 L 504.82352941176475 92.28571428571429 L 570.9411764705883 77.42857142857142 L 637.0588235294118 107.14285714285714 L 703.1764705882354 166.57142857142858 L 769.2941176470589 151.71428571428572 L 835.4117647058824 181.42857142857142 L 901.529411764706 122 L 967.6470588235295 151.71428571428572 L 1033.7647058823532 136.85714285714283 L 1099.8823529411766 77.42857142857142 L 1166 196.28571428571428" fill="none" stroke="#5C9A4F" stroke-width="2" stroke-dasharray="0" opacity=".9"/><circle cx="42" cy="122" r="3" fill="#5C9A4F"/><circle cx="108.11764705882354" cy="77.42857142857142" r="3" fill="#5C9A4F"/><circle cx="174.23529411764707" cy="32.857142857142854" r="3" fill="#5C9A4F"/><circle cx="240.3529411764706" cy="92.28571428571429" r="3" fill="#5C9A4F"/><circle cx="306.47058823529414" cy="62.57142857142857" r="3" fill="#5C9A4F"/><circle cx="372.5882352941177" cy="196.28571428571428" r="3" fill="#5C9A4F"/><circle cx="438.7058823529412" cy="151.71428571428572" r="3" fill="#5C9A4F"/><circle cx="504.82352941176475" cy="92.28571428571429" r="3" fill="#5C9A4F"/><circle cx="570.9411764705883" cy="77.42857142857142" r="3" fill="#5C9A4F"/><circle cx="637.0588235294118" cy="107.14285714285714" r="3" fill="#5C9A4F"/><circle cx="703.1764705882354" cy="166.57142857142858" r="3" fill="#5C9A4F"/><circle cx="769.2941176470589" cy="151.71428571428572" r="3" fill="#5C9A4F"/><circle cx="835.4117647058824" cy="181.42857142857142" r="3" fill="#5C9A4F"/><circle cx="901.529411764706" cy="122" r="3" fill="#5C9A4F"/><circle cx="967.6470588235295" cy="151.71428571428572" r="3" fill="#5C9A4F"/><circle cx="1033.7647058823532" cy="136.85714285714283" r="3" fill="#5C9A4F"/><circle cx="1099.8823529411766" cy="77.42857142857142" r="3" fill="#5C9A4F"/><circle cx="1166" cy="196.28571428571428" r="3" fill="#5C9A4F"/><path d="M 42 107.14285714285714 L 108.11764705882354 151.71428571428572 L 174.23529411764707 107.14285714285714 L 240.3529411764706 107.14285714285714 L 306.47058823529414 92.28571428571429 L 372.5882352941177 77.42857142857142 L 438.7058823529412 211.14285714285714 L 504.82352941176475 136.85714285714283 L 570.9411764705883 211.14285714285714 L 637.0588235294118 166.57142857142858 L 703.1764705882354 196.28571428571428 L 769.2941176470589 151.71428571428572 L 835.4117647058824 166.57142857142858 L 901.529411764706 181.42857142857142 L 967.6470588235295 151.71428571428572 L 1033.7647058823532 196.28571428571428 L 1099.8823529411766 211.14285714285714 L 1166 181.42857142857142" fill="none" stroke="#D9714F" stroke-width="2" opacity=".9"/><circle cx="42" cy="107.14285714285714" r="3" fill="#D9714F"/><circle cx="108.11764705882354" cy="151.71428571428572" r="3" fill="#D9714F"/><circle cx="174.23529411764707" cy="107.14285714285714" r="3" fill="#D9714F"/><circle cx="240.3529411764706" cy="107.14285714285714" r="3" fill="#D9714F"/><circle cx="306.47058823529414" cy="92.28571428571429" r="3" fill="#D9714F"/><circle cx="372.5882352941177" cy="77.42857142857142" r="3" fill="#D9714F"/><circle cx="438.7058823529412" cy="211.14285714285714" r="3" fill="#D9714F"/><circle cx="504.82352941176475" cy="136.85714285714283" r="3" fill="#D9714F"/><circle cx="570.9411764705883" cy="211.14285714285714" r="3" fill="#D9714F"/><circle cx="637.0588235294118" cy="166.57142857142858" r="3" fill="#D9714F"/><circle cx="703.1764705882354" cy="196.28571428571428" r="3" fill="#D9714F"/><circle cx="769.2941176470589" cy="151.71428571428572" r="3" fill="#D9714F"/><circle cx="835.4117647058824" cy="166.57142857142858" r="3" fill="#D9714F"/><circle cx="901.529411764706" cy="181.42857142857142" r="3" fill="#D9714F"/><circle cx="967.6470588235295" cy="151.71428571428572" r="3" fill="#D9714F"/><circle cx="1033.7647058823532" cy="196.28571428571428" r="3" fill="#D9714F"/><circle cx="1099.8823529411766" cy="211.14285714285714" r="3" fill="#D9714F"/><circle cx="1166" cy="181.42857142857142" r="3" fill="#D9714F"/></svg></div>
     <div class="legend-line">
       <span class="li"><i class="ln" style="background:var(--gold)"></i> Team best ball (vs par)</span>
       <span class="li"><i class="ln" style="background:var(--fair)"></i> Jeff gross</span>
@@ -355,22 +653,83 @@
         <button data-mode="net" aria-pressed="true">Net</button>
         <button data-mode="gross" aria-pressed="false">Gross</button>
       </div>
-      <h2 id="scoutTitle">Scouting · back nine, net vs Philpot &amp; Knop</h2>
-      <div class="ss-sub" id="scoutSub">Championship, back nine (holes 10–18). Net best-ball off the official handicaps. Off the low man (Brian), <b>Jeff, Philpot and Knop each get one stroke — all on hole 18 (SI 2)</b>; Brian plays scratch. <b>You</b> = your 4 paired rounds; <b>Them</b> = estimate from each player's average (small sample). Tell me the shotgun start hole and I'll reorder this list.</div>
-      <div class="scout-hcp" id="scoutHcp">Playing handicaps off the low man — Brian <b>0</b> · Jeff <b>1</b> · Philpot <b>1</b> · Knop <b>1</b> · one stroke each on hole 18</div>
+      <h2 id="scoutTitle">Scouting &middot; final round &middot; back nine, net vs Lohman &amp; Arensberg</h2>
+      <div class="ss-sub" id="scoutSub">Season finale, Thu Sep 17 &mdash; both teams enter tied for 1st, this decides it. Back nine (holes 10&ndash;18). You're both scratch this week (0); Lohman &amp; Arensberg each play off <b>11</b> &mdash; a stroke on every hole, <b>2 strokes on 13 and 18</b>. <b>Them</b> = their actual pairing, 3 back-nine rounds together (small sample, one rough day at Aug 6 included).</div>
+      <div class="scout-hcp" id="scoutHcp">Playing handicaps off the low man &mdash; Jeff <b>0</b> &middot; Brian <b>0</b> &middot; Lohman <b>11</b> &middot; Arensberg <b>11</b> &middot; 2 strokes each on holes 13 &amp; 18, 1 stroke on the rest</div>
       <div class="scout-tot">
-        <div class="st"><div class="l">You — best ball</div><div class="n" id="scoutTotYou">+3.75</div></div>
-        <div class="st"><div class="l">Them — best ball (est.)</div><div class="n" id="scoutTotThem">+6</div></div>
+        <div class="st"><div class="l">You &mdash; best ball</div><div class="n" id="scoutTotYou">+3.8</div></div>
+        <div class="st"><div class="l">Them &mdash; net</div><div class="n" id="scoutTotThem">+3</div></div>
       </div>
       <span class="scout-even" id="scoutEven" style="display:none"></span>
-      <div class="scout-keys" id="scoutKeys"><b>You're favored net — about +3.75 vs +6.</b> Your edge is the middle stretch: the par-5 <b>hole 13</b> (+1.25) and <b>12–14</b>, where Philpot leaks. The lone strokes all land on <b>hole 18</b> — your Jeff stroke is offset by their two, so the hardest hole plays to a near-push. <b>Knop is the threat</b>: steady 4s, sharp on the par 3s (11, 17), so halve those and press 12–14. Opponent sample is thin — treat the margin as directional.</div>
+      <div class="scout-keys" id="scoutKeys"><b>Closer than it looks &mdash; and maybe not in your favor.</b> Gross you're miles better (your ~39 vs their ~49), but net it flips: their historical net average is about <b>3⁄4 of a shot better than yours</b> per nine. Why: their two double-stroke holes land on exactly the wrong spots for you &mdash; <b>hole 13</b> turns your best hole into a net loss (they play it to a net birdie), and <b>hole 18</b> doubles down on your single worst hole. Your real edges are the un-struck middle holes: <b>10, 11, 14, 15</b>. Small opponent sample (3 rounds, one poor round at Aug 6 inflating their average) &mdash; treat the margin as a coin flip, not a lock.</div>
     </div>
     <div class="scout-list" id="scoutList"></div>
   </div>
 
+  <div id="schedView" style="display:none">
+    <div class="sched-head">
+      <h2>2026 Summer &middot; Thursday Best-Ball</h2>
+      <div class="sched-champ">🏆 Spring Champions &middot; won the title Jul 2 (1 up vs Philpot/Knop)</div>
+      <div class="sched-champ" style="margin-top:6px">🥇 Through 9 rounds: <b>T1st of 24 teams</b>, 26 pts, tied with Lohman/Arensberg &middot; 8&ndash;0&ndash;1, unbeaten &mdash; R10 vs them decides it</div>
+      <div class="sched-sub">9 of the season's rounds played, Jul 9 &ndash; Sep 10 &middot; Jeff &amp; Brian (Team 12) &middot; season ends <b>Thu Sep 17</b>, back nine</div>
+    </div>
+    <div class="sched-list">
+      <div class="sched-row">
+        <span class="sched-rnd">R1</span>
+        <div class="sched-mid"><div class="sched-opp">vs Zehnle / Haas</div><div class="sched-meta">Thu Jul 9 &middot; Back 9</div></div>
+        <span class="sched-res tie">HALVED</span>
+      </div>
+      <div class="sched-row">
+        <span class="sched-rnd">R2</span>
+        <div class="sched-mid"><div class="sched-opp">vs Jonas, McLaine / Salazar</div><div class="sched-meta">Thu Jul 23 &middot; Back 9 &middot; Brian out</div></div>
+        <span class="sched-res win">WON 9up</span>
+      </div>
+      <div class="sched-row">
+        <span class="sched-rnd">R3</span>
+        <div class="sched-mid"><div class="sched-opp">vs Durst / Kullot</div><div class="sched-meta">Thu Jul 30 &middot; Front 9</div></div>
+        <span class="sched-res win">WON 4up</span>
+      </div>
+      <div class="sched-row">
+        <span class="sched-rnd">R4</span>
+        <div class="sched-mid"><div class="sched-opp">vs Roco / Burgett</div><div class="sched-meta">Thu Aug 6 &middot; Back 9</div></div>
+        <span class="sched-res win">WON 9up</span>
+      </div>
+      <div class="sched-row">
+        <span class="sched-rnd">R5</span>
+        <div class="sched-mid"><div class="sched-opp">vs Grabill / Rodriguez</div><div class="sched-meta">Thu Aug 13 &middot; Front 9</div></div>
+        <span class="sched-res win">WON 5up</span>
+      </div>
+      <div class="sched-row">
+        <span class="sched-rnd">R6</span>
+        <div class="sched-mid"><div class="sched-opp">vs Tatro / Schwarten</div><div class="sched-meta">Thu Aug 20 &middot; Back 9</div></div>
+        <span class="sched-res win">WON 5up</span>
+      </div>
+      <div class="sched-row">
+        <span class="sched-rnd">R7</span>
+        <div class="sched-mid"><div class="sched-opp">vs Miller / Wademan</div><div class="sched-meta">Thu Aug 27 &middot; Front 9</div></div>
+        <span class="sched-res win">WON 2up</span>
+      </div>
+      <div class="sched-row">
+        <span class="sched-rnd">R8</span>
+        <div class="sched-mid"><div class="sched-opp">vs Elias / Lee</div><div class="sched-meta">Thu Sep 3 &middot; Front 9 &middot; Melissa subbed for Jeff</div></div>
+        <span class="sched-res win">WON 5up</span>
+      </div>
+      <div class="sched-row">
+        <span class="sched-rnd">R9</span>
+        <div class="sched-mid"><div class="sched-opp">vs Jonas, Michael / Spencer</div><div class="sched-meta">Thu Sep 10 &middot; Front 9</div></div>
+        <span class="sched-res win">WON 9up</span>
+      </div>
+      <div class="sched-row sched-next">
+        <span class="sched-rnd">R10</span>
+        <div class="sched-mid"><div class="sched-opp">vs Lohman / Arensberg &mdash; decides 1st place</div><div class="sched-meta">Thu Sep 17 &middot; Back 9 &middot; both teams enter tied 26 pts</div></div>
+        <span class="sched-tag">NEXT</span>
+      </div>
+    </div>
+  </div>
+
   <div class="footer">
     Pars &amp; stroke indexes from the Shoal Creek scorecard (par 71).<br>
-    Front-nine weeks: Apr 23 · May 7 · May 21 · Jun 4 · Jun 18 — Back-nine weeks: Apr 30 · May 14 · May 28 · Jun 11.
+    Front-nine weeks: Apr 23 · May 7 · May 21 · Jun 4 · Jun 18 · Jul 2 (spring champ.) · Jul 30 · Aug 13 · Aug 27 · Sep 10 — Back-nine weeks: Apr 30 · May 14 · May 28 · Jun 11 · Jul 9 · Jul 23 (Brian out) · Aug 6 · Aug 20.
   </div>
 
 </div>
@@ -380,28 +739,28 @@
    scores arrays are chronological within each nine.
    Front weeks: [Apr23, May7, May21, Jun4]
    Back weeks:  [Apr30, May14, May28, Jun11]                       */
-const FRONT_WEEKS = ['Apr 23','May 7','May 21','Jun 4','Jun 18'];
-const BACK_WEEKS  = ['Apr 30','May 14','May 28','Jun 11'];
+const FRONT_WEEKS = ['Apr 23','May 7','May 21','Jun 4','Jun 18','Jul 2','Jul 30','Aug 13','Aug 27','Sep 10'];
+const BACK_WEEKS  = ['Apr 30','May 14','May 28','Jun 11','Jul 9','Jul 23','Aug 6','Aug 20'];
 
 const HOLES = [
-  {h:1, par:4, si:3,  yds:398, nine:'F', jeff:[6,6,6,4,8], brian:[6,6,5,5,5]},
-  {h:2, par:4, si:15, yds:354, nine:'F', jeff:[4,4,7,5,5], brian:[4,6,4,4,5]},
-  {h:3, par:3, si:13, yds:168, nine:'F', jeff:[4,6,4,3,4], brian:[4,3,4,4,3]},
-  {h:4, par:4, si:7,  yds:384, nine:'F', jeff:[5,6,6,4,5], brian:[4,6,6,4,4]},
-  {h:5, par:3, si:11, yds:179, nine:'F', jeff:[4,4,4,4,4], brian:[3,3,4,2,3]},
-  {h:6, par:4, si:17, yds:333, nine:'F', jeff:[5,6,5,5,4], brian:[5,7,4,4,3]},
-  {h:7, par:5, si:1,  yds:545, nine:'F', jeff:[6,6,5,5,6], brian:[7,4,7,4,6]},
-  {h:8, par:4, si:5,  yds:398, nine:'F', jeff:[5,6,5,6,7], brian:[7,4,6,5,4]},
-  {h:9, par:5, si:9,  yds:478, nine:'F', jeff:[5,6,6,6,4], brian:[5,6,6,6,5]},
-  {h:10,par:4, si:10, yds:363, nine:'B', jeff:[4,5,6,6], brian:[4,4,6,4]},
-  {h:11,par:3, si:14, yds:190, nine:'B', jeff:[5,3,3,6], brian:[3,4,5,4]},
-  {h:12,par:4, si:16, yds:305, nine:'B', jeff:[5,5,7,3], brian:[5,5,5,6]},
-  {h:13,par:5, si:4,  yds:492, nine:'B', jeff:[5,6,4,4], brian:[6,6,7,6]},
-  {h:14,par:4, si:6,  yds:387, nine:'B', jeff:[6,5,4,6], brian:[4,6,5,4]},
-  {h:15,par:4, si:8,  yds:387, nine:'B', jeff:[5,6,4,7], brian:[5,5,6,6]},
-  {h:16,par:4, si:18, yds:319, nine:'B', jeff:[6,6,4,4], brian:[5,4,4,4]},
-  {h:17,par:3, si:12, yds:157, nine:'B', jeff:[4,4,3,5], brian:[4,4,4,4]},
-  {h:18,par:4, si:2,  yds:429, nine:'B', jeff:[7,6,4,5], brian:[6,7,5,5]},
+  {h:1, par:4, si:3,  yds:398, nine:'F', jeff:[6,6,6,4,8,8,5,7,4,5], brian:[6,6,5,5,5,3,5,7,4,6]},
+  {h:2, par:4, si:15, yds:354, nine:'F', jeff:[4,4,7,5,5,6,3,4,6,5], brian:[4,6,4,4,5,5,3,4,4,4]},
+  {h:3, par:3, si:13, yds:168, nine:'F', jeff:[4,6,4,3,4,2,4,3,4,4], brian:[4,3,4,4,3,3,4,3,5,4]},
+  {h:4, par:4, si:7,  yds:384, nine:'F', jeff:[5,6,6,4,5,4,5,6,5,5], brian:[4,6,6,4,4,5,6,6,3,5]},
+  {h:5, par:3, si:11, yds:179, nine:'F', jeff:[4,4,4,4,4,4,3,2,4,2], brian:[3,3,4,2,3,5,3,2,3,3]},
+  {h:6, par:4, si:17, yds:333, nine:'F', jeff:[5,6,5,5,4,5,4,4,6,4], brian:[5,7,4,4,3,4,4,4,5,4]},
+  {h:7, par:5, si:1,  yds:545, nine:'F', jeff:[6,6,5,5,6,6,7,5,6,4], brian:[7,4,7,4,6,5,7,5,6,4]},
+  {h:8, par:4, si:5,  yds:398, nine:'F', jeff:[5,6,5,6,7,5,4,5,6,5], brian:[7,4,6,5,4,4,4,5,4,5]},
+  {h:9, par:5, si:9,  yds:478, nine:'F', jeff:[5,6,6,6,4,5,5,6,6,5], brian:[5,6,6,6,5,7,5,6,4,5]},
+  {h:10,par:4, si:10, yds:363, nine:'B', jeff:[4,5,6,6,3,4,5,5], brian:[4,4,6,4,4,4,5,4]},
+  {h:11,par:3, si:14, yds:190, nine:'B', jeff:[5,3,3,6,3,3,4,4], brian:[3,4,5,4,3,3,4,6]},
+  {h:12,par:4, si:16, yds:305, nine:'B', jeff:[5,5,7,3,4,5,6,5], brian:[5,5,5,6,4,5,4,4]},
+  {h:13,par:5, si:4,  yds:492, nine:'B', jeff:[5,6,4,4,6,7,6,5], brian:[6,6,7,6,5,7,5,4]},
+  {h:14,par:4, si:6,  yds:387, nine:'B', jeff:[6,5,4,6,6,5,5,4], brian:[4,6,5,4,4,5,4,4]},
+  {h:15,par:4, si:8,  yds:387, nine:'B', jeff:[5,6,4,7,5,5,5,4], brian:[5,5,6,6,4,5,4,4]},
+  {h:16,par:4, si:18, yds:319, nine:'B', jeff:[6,6,4,4,4,5,4,6], brian:[5,4,4,4,7,5,5,4]},
+  {h:17,par:3, si:12, yds:157, nine:'B', jeff:[4,4,3,5,4,3,4,3], brian:[4,4,4,4,3,3,3,3]},
+  {h:18,par:4, si:2,  yds:429, nine:'B', jeff:[7,6,4,5,6,5,5,7], brian:[6,7,5,5,5,5,6,6]},
 ];
 
 const avg = a => a.reduce((s,x)=>s+x,0)/a.length;
@@ -549,6 +908,15 @@ function WEEKLY(){
     {wk:'May 21',nine:'F',idx:2},{wk:'May 28',nine:'B',idx:2},
     {wk:'Jun 4', nine:'F',idx:3},{wk:'Jun 11',nine:'B',idx:3},
     {wk:'Jun 18',nine:'F',idx:4},
+    {wk:'Jul 2', nine:'F',idx:5},
+    {wk:'Jul 9', nine:'B',idx:4},
+    {wk:'Jul 23',nine:'B',idx:5},
+    {wk:'Jul 30',nine:'F',idx:6},
+    {wk:'Aug 6', nine:'B',idx:6},
+    {wk:'Aug 13',nine:'F',idx:7},
+    {wk:'Aug 20',nine:'B',idx:7},
+    {wk:'Aug 27',nine:'F',idx:8},
+    {wk:'Sep 10',nine:'F',idx:9},
   ];
   return order.map(o=>{
     const hs=HOLES.filter(h=>h.nine===o.nine);
@@ -625,64 +993,69 @@ function buildNote(){
   document.getElementById('ptTitle').textContent = `${label} by hole type`;
 }
 
-/* ---------------- SCOUTING (championship · back nine) ---------------- */
+/* ---------------- SCOUTING (Round 10 · final round · back nine) ---------------- */
 const NINE_PAR=35;                                  // back-nine par
 const SHOTGUN=[10,11,12,13,14,15,16,17,18];
-const START=null;                                   // set to a hole number for a shotgun start; null = natural order
-// Philpot & Knop back-nine gross by hole — small sample (Philpot: Jun 11, May 28 · Knop: Jun 11, May 14, Apr 30)
+const START=null;                                   // straight tee time, no shotgun start given
+// Lohman & Arensberg — 3 back-nine rounds together this season (Jul 9, Aug 6, Aug 20)
 const OPP={
-  10:{phil:[7,6], knop:[4,4,4]},
-  11:{phil:[4,3], knop:[4,6,3]},
-  12:{phil:[7,4], knop:[7,5,5]},
-  13:{phil:[5,7], knop:[7,6,5]},
-  14:{phil:[5,5], knop:[6,6,5]},
-  15:{phil:[6,4], knop:[5,6,5]},
-  16:{phil:[5,5], knop:[4,4,4]},
-  17:{phil:[4,4], knop:[3,3,5]},
-  18:{phil:[6,6], knop:[5,6,5]},
+  10:{lohman:[6,7,6], arensberg:[7,5,6]},
+  11:{lohman:[5,5,5], arensberg:[4,6,6]},
+  12:{lohman:[6,8,6], arensberg:[5,6,5]},
+  13:{lohman:[6,7,7], arensberg:[7,5,7]},
+  14:{lohman:[5,5,7], arensberg:[5,6,7]},
+  15:{lohman:[7,6,6], arensberg:[6,6,6]},
+  16:{lohman:[5,7,6], arensberg:[4,5,7]},
+  17:{lohman:[5,7,5], arensberg:[5,3,5]},
+  18:{lohman:[6,6,7], arensberg:[6,6,7]},
 };
-const PH={jeff:1, brian:0, phil:1, knop:1};         // championship playing handicaps, off the low man (Brian)
-const STROKE_ORDER=[18,13,14,15,10,17,11,12,16];    // back-nine, hardest first (even indexes)
-const strokes=(p,h)=> (PH && PH[p]!=null && STROKE_ORDER.indexOf(h) < PH[p]) ? 1 : 0;
+const PH={jeff:0, brian:0, lohman:11, arensberg:11};  // Round 10 playing handicaps, off the low man (you're both scratch this week)
+const STROKE_ORDER=[18,13,14,15,10,17,11,12,16];      // back-nine, hardest first
+// handicaps above 9 need a 2nd stroke on the two hardest holes
+const strokes=(p,h)=>{
+  const ph=PH[p]; if(ph==null) return 0;
+  const rank=STROKE_ORDER.indexOf(h);
+  return Math.floor(ph/9) + (rank < (ph%9) ? 1 : 0);
+};
 const TIPS={
-  10:"Knop is steady here — take your par",
-  11:"Par 3, roughly even — halve it",
-  12:"Your hole — Philpot leaks here. Press",
-  13:"Par 5, your biggest edge — both of you reach. Attack",
-  14:"You score this stretch — keep it",
-  15:"Even — grind a par",
-  16:"Easiest hole; Knop makes 4 — match it",
-  17:"Par 3 — Knop is solid here; halve it",
-  18:"Hardest hole, both scrappy — a par wins it",
+  10:"Your steadiest hole — a routine par should win or halve it",
+  11:"Long par 3 — you're the sharper team here, no strokes swing it",
+  12:"Short 305y — close to even even after their stroke, don't relax",
+  13:"Their double-stroke hole — net it plays as a birdie for them. You need a real birdie to compete, not just a par",
+  14:"Solid hole for you — press, no strokes save them here",
+  15:"Your leakiest hole but still favors you net — don't give it back",
+  16:"Easiest by yardage — their stroke makes it a scoring race, attack",
+  17:"Short par 3 — nearly even net, a good par should hold",
+  18:"Hardest hole AND their 2nd double-stroke — net it's a coin flip despite being your worst hole. Just make bogey and move on",
 };
-const TIPS_NET=Object.assign({},TIPS,{18:"Everyone strokes here — plays to a near-push. Scrap for the half"});
 const SCOUT_COPY={
-  gross:{
-    title:'Scouting · back nine vs Philpot &amp; Knop',
-    sub:"Championship, back nine (holes 10–18). Best-ball average vs par. <b>You</b> = your 4 paired rounds; <b>Them</b> = estimate from each player's average (Philpot 2 back-nine rounds, Knop 3 — small sample). Tell me the shotgun start hole and I'll reorder this list.",
-    keys:"<b>You look like the stronger back-nine team</b> — best ball about +4.5 vs an estimated +7, driven by the par-5 <b>hole 13</b> and the <b>12–14</b> stretch where Philpot leaks. <b>Knop is the danger</b>: steady 4s, sharp on the par 3s (11, 17) — don't bank on winning those. Their number is a small sample, so treat the gap as directional; the match likely turns on the hardest hole <b>18</b> and your par-5 scoring.",
-    tips:TIPS, hcp:false, even:''
-  },
   net:{
-    title:'Scouting · back nine, net vs Philpot &amp; Knop',
-    sub:"Championship, back nine (holes 10–18). Net best-ball off the official handicaps. Off the low man (Brian), <b>Jeff, Philpot and Knop each get one stroke — all on hole 18 (SI 2)</b>; Brian plays scratch. <b>You</b> = your 4 paired rounds; <b>Them</b> = estimate from each player's average (small sample). Tell me the shotgun start hole and I'll reorder this list.",
-    keys:"<b>You're favored net — about +3.75 vs +6.</b> Your edge is the middle stretch: the par-5 <b>hole 13</b> (+1.25) and <b>12–14</b>, where Philpot leaks. The lone strokes all land on <b>hole 18</b> — your Jeff stroke is offset by their two, so the hardest hole plays to a near-push. <b>Knop is the threat</b>: steady 4s, sharp on the par 3s (11, 17), so halve those and press 12–14. Opponent sample is thin — treat the margin as directional.",
-    tips:TIPS_NET, hcp:true, even:''
+    title:'Scouting · final round · back nine, net vs Lohman &amp; Arensberg',
+    sub:"Season finale, Thu Sep 17 &mdash; both teams enter tied for 1st, this decides it. Back nine (holes 10&ndash;18). You're both scratch this week (0); Lohman &amp; Arensberg each play off <b>11</b> &mdash; a stroke on every hole, <b>2 strokes on 13 and 18</b>. <b>Them</b> = their actual pairing, 3 back-nine rounds together (small sample, one rough day at Aug 6 included).",
+    keys:"<b>Closer than it looks &mdash; and maybe not in your favor.</b> Gross you're miles better (your ~39 vs their ~49), but net it flips: their historical net average is about <b>3\u20444 of a shot better than yours</b> per nine. Why: their two double-stroke holes land on exactly the wrong spots for you &mdash; <b>hole 13</b> turns your best hole into a net loss (they play it to a net birdie), and <b>hole 18</b> doubles down on your single worst hole. Your real edges are the un-struck middle holes: <b>10, 11, 14, 15</b>. Small opponent sample (3 rounds, one poor round at Aug 6 inflating their average) &mdash; treat the margin as a coin flip, not a lock.",
+    tips:TIPS, hcp:true, even:''
+  },
+  gross:{
+    title:'Scouting · final round · back nine, gross vs Lohman &amp; Arensberg',
+    sub:"Season finale, Thu Sep 17 &mdash; both teams enter tied for 1st. Back nine (holes 10&ndash;18), raw scores with no handicap strokes. <b>Them</b> = 3 back-nine rounds together, small sample.",
+    keys:"Gross, this isn't close &mdash; your best-ball average (~39) is well clear of theirs (~49). But this league plays net, and their <b>11-stroke</b> allocation each closes almost the entire gap. Switch to Net for the number that actually decides Thursday.",
+    tips:TIPS, hcp:false, even:''
   }
 };
 function holeBest(h,mode){
   const hole=HOLES.find(x=>x.h===h), net=mode==='net';
   const sj=net?strokes('jeff',h):0, sb=net?strokes('brian',h):0;
-  const sp=net?strokes('phil',h):0, sk=net?strokes('knop',h):0;
-  const you = r1(avg([0,1,2,3].map(i=>Math.min(hole.jeff[i]-sj, hole.brian[i]-sb))));
-  const them= r1(Math.min(avg(OPP[h].phil)-sp, avg(OPP[h].knop)-sk));
+  const sl=net?strokes('lohman',h):0, sa=net?strokes('arensberg',h):0;
+  const you = r1(avg(hole.jeff.map((_,i)=>Math.min(hole.jeff[i]-sj, hole.brian[i]-sb))));
+  const opp=OPP[h];
+  const them = r1(avg(opp.lohman.map((_,i)=>Math.min(opp.lohman[i]-sl, opp.arensberg[i]-sa))));
   return {you, them};
 }
 const fmtMargin=m=>{m=Math.round(m*100)/100;return Math.round(m)===m?m.toFixed(0):String(m);};
 const pips=n=> n? '<span class="pips">'+'&bull;'.repeat(n)+'</span>' : '';
 
 function buildScout(){
-  const mode=SCOUT_MODE, copy=SCOUT_COPY[mode]||SCOUT_COPY.gross, net=mode==='net';
+  const mode=SCOUT_MODE, copy=SCOUT_COPY[mode]||SCOUT_COPY.net, net=mode==='net';
   const i0=SHOTGUN.indexOf(START);
   const order=(START!=null && i0>=0)? SHOTGUN.slice(i0).concat(SHOTGUN.slice(0,i0)) : SHOTGUN;
   let ty=0, tt=0;
@@ -690,7 +1063,7 @@ function buildScout(){
     const hole=HOLES.find(x=>x.h===h);
     const nb=holeBest(h,mode); ty+=nb.you; tt+=nb.them;
     const youStrk=net?(strokes('jeff',h)+strokes('brian',h)):0;
-    const themStrk=net?(strokes('phil',h)+strokes('knop',h)):0;
+    const themStrk=net?(strokes('lohman',h)+strokes('arensberg',h)):0;
     const diff=r1(nb.you-nb.them);
     let edge,color;
     if(Math.abs(diff)<0.13){edge='&#61; EVEN';color='var(--ink-soft)';}
@@ -717,19 +1090,21 @@ function buildScout(){
   const ev=document.getElementById('scoutEven');
   ev.style.display=copy.even?'inline-block':'none'; ev.textContent=copy.even||'';
   document.getElementById('scoutKeys').innerHTML=copy.keys;
-  document.querySelectorAll('.scout-modeseg button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.mode===mode));
+  document.querySelectorAll('.scout-modeseg button').forEach(b=>{b.style.display='';b.setAttribute('aria-pressed', b.dataset.mode===mode);});
 }
 
 /* ---------------- WIRING ---------------- */
 function renderAll(){
-  const scout = VIEW==='scout';
-  document.querySelectorAll('.normal-sec').forEach(el=>{ el.style.display = scout ? 'none' : ''; });
+  const scout = VIEW==='scout', sched = VIEW==='sched';
+  document.querySelectorAll('.normal-sec').forEach(el=>{ el.style.display = (scout||sched) ? 'none' : ''; });
   document.getElementById('scoutView').style.display = scout ? '' : 'none';
+  document.getElementById('schedView').style.display = sched ? '' : 'none';
   if(scout){
     buildScout();
-    document.getElementById('ctxNote').innerHTML='Back-nine head-to-head vs Philpot &amp; Knop — holes 10–18.';
+    document.getElementById('ctxNote').innerHTML='Season finale, back nine vs Lohman &amp; Arensberg — holes 10–18.';
     return;
   }
+  if(sched){ return; }
   buildCard(); buildTrouble(); buildPtype(); buildNote(); buildDetail();
 }
 document.querySelectorAll('.seg button').forEach(b=>{
